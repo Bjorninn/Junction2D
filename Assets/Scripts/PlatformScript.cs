@@ -2,7 +2,7 @@
 using System.Collections;
 
 public class PlatformScript : MonoBehaviour {
-    public Rigidbody rb;
+    private Rigidbody2D rb;
     private Vector3 position;
     private Quaternion rotation;
     private float fallingSpeed;
@@ -22,8 +22,7 @@ public class PlatformScript : MonoBehaviour {
 
     // Use this for initialization
     void Start () {
-        rb = GetComponent<Rigidbody>();
-        rb.detectCollisions = true;
+        rb = GetComponent<Rigidbody2D>();
 
         position = transform.position;
         rotation = transform.rotation;
@@ -66,7 +65,7 @@ public class PlatformScript : MonoBehaviour {
         }
     }
 
-    void OnCollisionEnter(Collision collision)
+    void OnCollisionEnter2D(Collision2D collision)
     {
         if (breakable && !startFalling)
         {
@@ -74,12 +73,12 @@ public class PlatformScript : MonoBehaviour {
         }
     }
 
-    void OnCollisionStay(Collision collisionInfo)
+    void OnCollisionStay2D(Collision2D collisionInfo)
     {
         
     }
 
-    void OnCollisionExit(Collision collision)
+    void OnCollisionExit2D(Collision2D collision)
     {
 
     }
