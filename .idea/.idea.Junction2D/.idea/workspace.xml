@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c7dea80-aaef-453b-86f3-df83da822b1f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Assets/Scripts/Test.cs" />
-    </list>
+    <list default="true" id="3c7dea80-aaef-453b-86f3-df83da822b1f" name="Default" comment="" />
     <ignored path="Junction2D.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -142,12 +140,12 @@
       <option name="presentableId" value="Default" />
       <updated>1480096258664</updated>
       <workItem from="1480096263509" duration="360000" />
-      <workItem from="1480096732642" duration="46000" />
+      <workItem from="1480096732642" duration="174000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="406000" />
+    <option name="totallyTimeSpent" value="534000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
