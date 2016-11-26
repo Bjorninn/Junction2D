@@ -3,8 +3,8 @@ public class CharacterMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        timescaleDefault = Time.timeScale;
+    }
 	
 	[HideInInspector]
 	public bool facingRight = true;
@@ -40,6 +40,9 @@ public class CharacterMovement : MonoBehaviour {
 	private bool tryingToJump;
 	private float idleTimeLimit;
 	private float idleTimeCounter;
+    
+    private bool mainMenuEnabled = false;
+    private float timescaleDefault;
 
     // Use this for initialization
 	void Awake()
@@ -56,7 +59,28 @@ public class CharacterMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            GameObject mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
+            Transform[] components = mainMenu.transform.GetComponentsInChildren<Transform>(true);
+            foreach (Transform t in components)
+            {
+                t.gameObject.SetActive(!mainMenuEnabled);
+            }
+            mainMenu.SetActive(true);
+            mainMenuEnabled = !mainMenuEnabled;
+
+            if (mainMenuEnabled)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = timescaleDefault;
+            }
+        }
+
+        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 	    Stroke();
 		var v = Input.GetAxis("Vertical");
 
