@@ -35,9 +35,10 @@ public class CharacterMovement : MonoBehaviour {
 	private bool sliding = false;
 	private float slideStart;
     public float deathTimer = 10f;
+    private bool dead = false;
 
 
-	// Use this for initialization
+    // Use this for initialization
 	void Awake()
 	{
 		anim = GetComponent<Animator>();
@@ -66,16 +67,23 @@ public class CharacterMovement : MonoBehaviour {
 		}
 	}
 
+    public void Kill()
+    {
+        anim.SetTrigger("Death");
+        dead = true;
+    }
+
     void Stroke()
     {
         if (Time.time > deathTimer)
         {
-            anim.SetTrigger("Death");
+            Kill();
         }   
     }
 
 	void FixedUpdate()
 	{
+        if(!dead)
 		if (!sliding)
 		{
 			float h = Input.GetAxis("Horizontal");
