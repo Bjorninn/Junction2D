@@ -48,8 +48,8 @@ public class CharacterMovement : MonoBehaviour
 
 	private bool mainMenuEnabled = false;
 	private float timescaleDefault;
-	private bool isJumping { get; private set; }
-	private bool isRunning { get; private set; }
+	public bool isJumping { get; private set; }
+    public bool isRunning { get; private set; }
 	public float chasersPosition;
 	public float playersAdvance = 100;
 	public float chasersSpeed = 1;
@@ -61,8 +61,11 @@ public class CharacterMovement : MonoBehaviour
 	private PolygonCollider2D tempCollider;
 	private Vector2[] oldPath;
 
-	// Use this for initialization
-	void Awake()
+    public AudioClip reloadingSound;
+    public AudioClip shootingSound;
+
+    // Use this for initialization
+    void Awake()
 	{
 		anim = GetComponent<Animator>();
 		rb2d = GetComponent<Rigidbody2D>();
