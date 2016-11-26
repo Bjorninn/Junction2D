@@ -46,7 +46,7 @@ public class MovingLight : MonoBehaviour {
 			if (collider.gameObject.tag == "Player") {
 
 			//	Destroy (collider.gameObject);
-				collider.gameObject.GetComponent<CharacterMovement>().Die(); // TODO to Kill()
+				collider.gameObject.GetComponent<CharacterMovement>().Kill();
 			}
 		}
 
