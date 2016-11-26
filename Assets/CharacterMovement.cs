@@ -13,13 +13,13 @@ public class CharacterMovement : MonoBehaviour
 
 	public int actualDirectionVector
 	{
-		get { return facingRight ? 1 : -1; }
+		get { return facingRight ? -1 : 1; }
 		private set { }
 	}
 
 	[HideInInspector]
-	public bool doHighJump = false;
-	public float highJumpVerticalForce = 1000f;
+	public bool doJump = false;
+	public float JumpVerticalForce = 1000f;
 	public Transform groundCheck;
 	public float speed = 20;
 	public float slideForce = 100;
@@ -39,7 +39,6 @@ public class CharacterMovement : MonoBehaviour
 
 	public float deathTimer = 10f;
 	public bool isDead { get; private set; }
-	public float highJumpHorizontalForce = 1000f;
 
 	private bool idleMove;
 	private bool tryingToJump;
@@ -53,8 +52,6 @@ public class CharacterMovement : MonoBehaviour
 	public float chasersPosition;
 	public float playersAdvance = 100;
 	public float chasersSpeed = 1;
-	public int longJumpHorizontalForce = 300;
-	public float longJumpVerticalForce = 200;
 	private bool doLongJump;
 
 	public PolygonCollider2D slidingCollider;
@@ -102,14 +99,9 @@ public class CharacterMovement : MonoBehaviour
 			//We can only jump or slide, not both
 			if (v > 0)
 			{
-				if (h == 0)
-				{
-					doHighJump = true;
-				}
-				else
-				{
-					doLongJump = true;
-				}
+
+					doJump = true;
+			
 			}
 			else if (v < 0)
 			{
@@ -119,9 +111,19 @@ public class CharacterMovement : MonoBehaviour
 
 		MoveChaser();
 
+	    //AmplifyFall();
+
 	}
 
-	private void StopJumping()
+    private void AmplifyFall()
+    {
+        if (rb2d.velocity.y < 0)
+        {
+            rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y * 1.2f);
+        }
+    }
+
+    private void StopJumping()
 	{
 		isJumping = false;
 		anim.SetBool("Jumping", false);
@@ -152,28 +154,23 @@ public class CharacterMovement : MonoBehaviour
 		timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
 	}
 
-  
 
 	void FixedUpdate()
 	{
 		var h = Input.GetAxis("Horizontal");
 		if (isDead) return;
-		if (doHighJump)
+		if (doJump)
 		{
 			StopRunning();
-			HighJump();
+			Jump();
 		}
-		else if(doLongJump)
-		{
-			StopRunning();
-			LongJump();
-		}
+		
 		else if (doSlide)
 		{
 			StopRunning();
 			Slide();
 		}
-		else if (isGrounded && !isSliding)
+		if (!isSliding)
 		{
 
 			//TODO: replace this
@@ -238,31 +235,28 @@ public class CharacterMovement : MonoBehaviour
 	{
 		tran.Translate(Vector3.right*h*Time.deltaTime*speed);
 
-		if (h > 0 && !facingRight)
+		if (h < 0 && !facingRight)
 			Flip();
-		else if (h < 0 && facingRight)
+		else if (h > 0 && facingRight)
 			Flip();
 		isRunning = true;
 		anim.SetBool("Running", true);
 	}
 
-	private void HighJump()
+	private void Jump()
 	{
 		anim.SetBool("Jumping", true);
-		rb2d.AddForce(new Vector2(highJumpHorizontalForce*actualDirectionVector, 0f), ForceMode2D.Force);
-		rb2d.AddForce(new Vector2(0f, highJumpVerticalForce), ForceMode2D.Impulse);
-		doHighJump = false;
+		//rb2d.AddForce(new Vector2(highJumpHorizontalForce*actualDirectionVector, 0f), ForceMode2D.Impulse);
+		rb2d.AddForce(new Vector2(0f, JumpVerticalForce), ForceMode2D.Impulse);
+	    //rb2d.velocity = new Vector2(highJumpHorizontalForce*actualDirectionVector, highJumpVerticalForce);
+
+        doJump = false;
 		isJumping = true;
 	}
 
-	private void LongJump()
-	{
-		anim.SetBool("Jumping", true);
-		rb2d.AddForce(new Vector2(longJumpHorizontalForce * actualDirectionVector,0f), ForceMode2D.Impulse);
-		rb2d.AddForce(new Vector2(0f, longJumpVerticalForce), ForceMode2D.Force);
-		doLongJump = false;
-		isJumping = true;
-	}
+   
+
+
 
 	private void Slide()
 	{
