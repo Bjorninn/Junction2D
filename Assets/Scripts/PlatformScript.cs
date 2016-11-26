@@ -55,7 +55,7 @@ public class PlatformScript : MonoBehaviour {
         if (startFalling)
         {
             secondsBeforeFallingDown -= 0.25f;
-            if (secondsBeforeFallingDown <= 0)
+            if (secondsBeforeFallingDown <= 0 && Time.timeScale > 0)
             {
                 position.y -= fallingSpeed;
                 this.transform.position = position;
