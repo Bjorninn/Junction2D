@@ -6,13 +6,14 @@ public class FlashLight : MonoBehaviour
 {
     private const float JumpWobble = 6.06f;
     private const float MaxWobble = 2.7f;
+    private const float MaxIntensity = 8.0f;
+    private const float DrainRate = 8.0f;
 
     public static FlashLight Instance { private set; get; }
 
     public float MaxCharge;
     public Light Beam;
     public float CurrentCharge { private set; get; }
-    private float _drainRate;
 
     private bool _isOn;
     private float _wobbleSpeed;
@@ -24,7 +25,6 @@ public class FlashLight : MonoBehaviour
     {
         Instance = this;
         CurrentCharge = MaxCharge;
-        _drainRate = 1.0f;
         _isOn = Beam.enabled;
 
         _wobbleSpeed = 0.34f;
@@ -117,13 +117,16 @@ public class FlashLight : MonoBehaviour
     {
         while (_isOn)
         {
-            CurrentCharge -= _drainRate;
+            CurrentCharge -= DrainRate;
 
             if (CurrentCharge <= 0)
             {
                 CurrentCharge = 0;
                 ToggleFlashlight();
             }
+
+            float charge = ((CurrentCharge / MaxCharge) * (MaxIntensity - 1.0f)) + 1.0f;
+            Beam.intensity = charge;
 
             yield return new WaitForSeconds(1.0f);
         }

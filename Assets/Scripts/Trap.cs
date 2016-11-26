@@ -25,6 +25,9 @@ public class Trap : MonoBehaviour {
 
             // Play sound
 
+            // Play animation
+            var animator = GetComponent<Animator>();
+            animator.SetTrigger("Close");
         }
     }
 }

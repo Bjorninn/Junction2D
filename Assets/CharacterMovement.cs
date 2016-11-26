@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 public class CharacterMovement : MonoBehaviour
 {
 
@@ -60,6 +61,8 @@ public class CharacterMovement : MonoBehaviour
 
     public AudioClip reloadingSound;
     public AudioClip shootingSound;
+
+    private int playerScore = 0;
 
     // Use this for initialization
     void Awake()
@@ -141,19 +144,39 @@ public class CharacterMovement : MonoBehaviour
 	{
 		if (!isDead)
 		{
-			isDead = true;
+            this.StopRunning();
+            this.StopJumping();
+            isDead = true;
+            anim.SetTrigger("Idle");
+            //anim.Stop();
+            
 			audio.PlayOneShot(reloadingSound, 0.1f);            
 			Invoke("_Kill", 1.0f);
 		}
 	}
 
-	private void _Kill()
-	{
-		anim.SetTrigger("Death");
-		audio.PlayOneShot(shootingSound, 0.5f);
-		timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
-	}
+    private void _Kill()
+    {
+        anim.SetTrigger("Death");
+        audio.PlayOneShot(shootingSound, 0.5f);
+        //timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
 
+        if (mainMenuEnabled)
+        {
+            Time.timeScale = 0;
+        }
+
+        GameObject gameOverMenu = GameObject.FindGameObjectWithTag("GameOver");
+        Transform[] components = gameOverMenu.transform.GetComponentsInChildren<Transform>(true);
+        foreach (Transform t in components)
+        {
+            t.gameObject.SetActive(true);
+        }
+
+        GameObject scoreLabel = GameObject.FindGameObjectWithTag("ScoreLabel");
+        var textComponent = scoreLabel.GetComponent<Text>();
+        textComponent.text = "Flashlight charge: " + playerScore.ToString();
+    }
 
 	void FixedUpdate()
 	{
