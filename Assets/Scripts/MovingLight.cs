@@ -14,6 +14,8 @@ public class MovingLight : MonoBehaviour {
 	protected Vector2 pos2d = new Vector2();
 	protected float radius;
 
+	private bool isAllowedToMove;
+
 	// Use this for initialization
 	void Start () {
 
@@ -25,7 +27,7 @@ public class MovingLight : MonoBehaviour {
 
 		pos = GetComponent<Transform> ();
 		radius = pos.FindChild ("Range").gameObject.GetComponent<CircleCollider2D> ().radius;
-
+		isAllowedToMove = true;
 	}
 
 	public void FixedUpdate(){
@@ -47,14 +49,29 @@ public class MovingLight : MonoBehaviour {
 
 			//	Destroy (collider.gameObject);
 				collider.gameObject.GetComponent<CharacterMovement>().Kill();
+				Invoke ("StopForOneSecond", 0.5f);
+				//StopForOneSecond ();
 			}
 		}
 
 	}
 
+
+	public void StopForOneSecond(){
+		StartCoroutine ("Stopping");
+	}
+
+	IEnumerator Stopping(){
+
+		isAllowedToMove = false;
+		yield return new WaitForSeconds (2.0f);
+		isAllowedToMove = true;
+	}
+
 	public void MoveLightWaypoints(){
 
 		Transform target = waypoints.transform.GetChild (currentLight);
+		if(isAllowedToMove)
 		pos.position = Vector3.MoveTowards (pos.position, target.position, speed * Time.deltaTime); 
 
 		// if we are at the target
