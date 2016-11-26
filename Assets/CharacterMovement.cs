@@ -230,7 +230,10 @@ public class CharacterMovement : MonoBehaviour {
     }
 }
 >>>>>>> Stashed changes
+<<<<<<< Updated upstream
 
+=======
+>>>>>>> Stashed changes
 
 	private void SetSlidingTransform()
 	{
