@@ -6,45 +6,79 @@ public class TimerSpotlight : MonoBehaviour {
 	public GameObject lightPrefab;
 	public GameObject player;
 
+	public bool spotlightCreated;
+
 	private MovingLight ml;
+	private bool turnBack;
+	private GameObject[] points = new GameObject[1];
+
+
 
 	// Use this for initialization
 	void Start () {
-	
-		Vector3 startPos = new Vector3(-0.2f, 0.0f, 0.0f);
-		startPos = Camera.main.ViewportToWorldPoint(startPos);
-		startPos.y = player.transform.position.y;
-	//	startPos.z = 0;
+
+		spotlightCreated = false;
+		turnBack = false;
+	}
 
 
-		Vector3 endPos = new Vector3(1.2f, 0.0f, 0.0f);
-		endPos = Camera.main.ViewportToWorldPoint(endPos);
+	public void CreateSpotlight(float y){
 
-		endPos.y = player.transform.position.y;
-	//	endPos.z = 0;
+		if (!spotlightCreated) {
+
+			spotlightCreated = true;
+
+			Vector3 startPos = new Vector3 (-0.2f, 0.0f, 0.0f);
+			startPos = Camera.main.ViewportToWorldPoint (startPos);
+			startPos.y = player.transform.position.y;
 
 
-		GameObject wps = new GameObject ();
+			Vector3 endPos = new Vector3 (1.2f, 0.0f, 0.0f);
+			endPos = Camera.main.ViewportToWorldPoint (endPos);
 
-		GameObject startGo = new GameObject ();
-		startGo.transform.position = startPos;
-		startGo.transform.parent = wps.transform;
+			endPos.y = player.transform.position.y;
 
-		GameObject endGo = new GameObject ();
-		endGo.transform.position = endPos;
-		endGo.transform.parent = wps.transform;
 
-		GameObject light = (GameObject) Instantiate (lightPrefab, startPos, Quaternion.identity);
-		light.GetComponent<MovingLight>().SetWaypoints(wps);
-		ml = light.GetComponent<MovingLight> ();
+			GameObject wps = new GameObject ();
+
+			GameObject startGo = new GameObject ();
+			startGo.transform.position = startPos;
+			startGo.transform.parent = wps.transform;
+
+			GameObject endGo = new GameObject ();
+			endGo.transform.position = endPos;
+			endGo.transform.parent = wps.transform;
+
+			points [0] = wps;
+
+			GameObject light = (GameObject)Instantiate (lightPrefab, startPos, Quaternion.identity);
+			light.GetComponent<MovingLight> ().SetWaypoints (wps);
+			ml = light.GetComponent<MovingLight> ();
+			//wps.transform.parent = light.transform;
+		}
+
 	}
 
 	public void FixedUpdate(){
 
-		if (Input.GetKey (KeyCode.Space)) {
-			ml.TurnBack ();
+		if(turnBack && ml != null && ml.LightIsAtWaypoint()){
+
+			Destroy (ml.gameObject);
+			spotlightCreated = false;
+			turnBack = false;
+			Destroy(points[0]);
+
 		}
 
+
+
+	}
+
+	public void TurnBack(){
+		if (spotlightCreated && !turnBack) {
+			ml.TurnBack ();
+			turnBack = true;
+		}
 	}
 
 }
