@@ -169,7 +169,7 @@ public class CharacterMovement : MonoBehaviour {
             {
                 anim.SetBool("Jumping", true);
                 anim.SetBool("Running", false);
-                rb2d.AddForce(new Vector2(jumpHorizontalForce*actualDirectionVector, jumpVerticalForce));
+                rb2d.AddForce(new Vector2(jumpHorizontalForce*actualDirectionVector, jumpVerticalForce), ForceMode2D.Impulse);
                 jump = false;
             }
 
