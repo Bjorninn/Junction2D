@@ -43,9 +43,10 @@ public class MovingLight : MonoBehaviour {
 
 			//Debug.Log (colliders [i].gameObject.name);
 
-			if (collider.gameObject.name == "Player") {
+			if (collider.gameObject.tag == "Player") {
 
-				Destroy (collider.gameObject);
+			//	Destroy (collider.gameObject);
+				collider.gameObject.GetComponent<CharacterMovement>().Die(); // TODO to Kill()
 			}
 		}
 
@@ -60,6 +61,15 @@ public class MovingLight : MonoBehaviour {
 		if ((target.position - pos.position).magnitude == 0.0f) {
 			currentLight = (currentLight + 1) % waypoints.transform.childCount;
 		}
+	}
+
+	public bool LightIsAtWaypoint(){
+		Transform target = waypoints.transform.GetChild (currentLight);
+		pos.position = Vector3.MoveTowards (pos.position, target.position, speed * Time.deltaTime); 
+
+		// if we are at the target
+		return (target.position - pos.position).magnitude == 0.0f;
+
 	}
 
 	public void SetWaypoints(GameObject wps){

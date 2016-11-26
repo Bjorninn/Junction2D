@@ -24,7 +24,7 @@ public class CharacterMovement : MonoBehaviour {
 	public float speed = 20;
 	public float slideForce = 100;
 	public float slideDuration = 2;
-
+	public GameObject timerSpotlight;
 
 	private bool grounded = false;
 	private Animator anim;
@@ -36,7 +36,10 @@ public class CharacterMovement : MonoBehaviour {
 	private float slideStart;
     public float deathTimer = 10f;
     private bool dead = false;
-
+	private bool idleMove;
+	private bool tryingToJump;
+	private float idleTimeLimit;
+	private float idleTimeCounter;
 
     // Use this for initialization
 	void Awake()
@@ -45,6 +48,9 @@ public class CharacterMovement : MonoBehaviour {
 		rb2d = GetComponent<Rigidbody2D>();
 		tran = GetComponent<Transform>();
 		box = GetComponent<BoxCollider2D>();
+
+		idleTimeLimit = 5.0f;
+		idleTimeCounter = 0.0f;
 	}
 
 	// Update is called once per frame
@@ -53,11 +59,19 @@ public class CharacterMovement : MonoBehaviour {
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 	    Stroke();
 		var v = Input.GetAxis("Vertical");
+
 	    if (grounded)
 	    {
             anim.SetBool("Jumping", false);
         }
-		if (v > 0 && grounded && !sliding)
+
+		if (Mathf.Abs (v) < 0.05f) {
+			tryingToJump = false;
+		} else {
+			tryingToJump = true;
+		}
+
+		if (v > 0 && grounded)
 		{
 			jump = true;
 		}
@@ -110,6 +124,13 @@ public class CharacterMovement : MonoBehaviour {
             {
                 anim.SetBool("Running", false);
             }
+
+			if (Mathf.Abs (h) < 0.05f) {
+				idleMove = true;
+			} else {
+				idleMove = false;
+			}
+				
 		}
 		else if(Time.time - slideStart >= slideDuration)
 		{
@@ -138,6 +159,33 @@ public class CharacterMovement : MonoBehaviour {
 			slide = false;
 			//SetSlidingTransform();
 		}
+
+		// if idle
+		if (idleMove && !tryingToJump) {
+
+			// advance timer
+			idleTimeCounter += Time.deltaTime;
+
+			// if too long idle
+			if (idleTimeCounter > idleTimeLimit) {
+				timerSpotlight.GetComponent<TimerSpotlight> ().CreateSpotlight (tran.position.y);	
+			}
+
+		} 
+
+		// if player moves,reset timer
+		if (!idleMove || tryingToJump){
+			// reset
+			idleTimeCounter = 0;
+			timerSpotlight.GetComponent<TimerSpotlight> ().TurnBack ();
+		}
+
+	}
+
+	public void Die(){
+	
+		Destroy (this.gameObject);
+		timerSpotlight.GetComponent<TimerSpotlight> ().TurnBack ();
 	}
 
 	private void SetSlidingTransform()
