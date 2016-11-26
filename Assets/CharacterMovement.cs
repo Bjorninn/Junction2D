@@ -38,7 +38,7 @@ public class CharacterMovement : MonoBehaviour
     private float slideStart;
 
     public float deathTimer = 10f;
-    private bool isDead = false;
+    public bool isDead { get; private set; }
     public float jumpHorizontalForce = 1000f;
 
     private bool idleMove;
@@ -48,8 +48,8 @@ public class CharacterMovement : MonoBehaviour
 
     private bool mainMenuEnabled = false;
     private float timescaleDefault;
-    private bool isJumping = false;
-    private bool isRunning = false;
+    public bool isJumping { get; private set; }
+    public bool isRunning { get; private set; }
 
     public AudioClip reloadingSound;
     public AudioClip shootingSound;

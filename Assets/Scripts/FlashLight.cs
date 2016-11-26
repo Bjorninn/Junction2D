@@ -4,6 +4,9 @@ using System.Collections;
 
 public class FlashLight : MonoBehaviour
 {
+    private const float JumpWobble = 6.06f;
+    private const float MaxWobble = 2.7f;
+
     public static FlashLight Instance { private set; get; }
 
     public float MaxCharge;
@@ -12,63 +15,93 @@ public class FlashLight : MonoBehaviour
     private float _drainRate;
 
     private bool _isOn;
-    private float _maxWobble;
     private float _wobbleSpeed;
     private bool _isWobbling;
+    private float _wobbleEps;
 
-	// Use this for initialization
-	void Start ()
-	{
-	    Instance = this;
-	    CurrentCharge = MaxCharge;
-	    _drainRate = 1.0f;
-	    _isOn = Beam.enabled;
+    // Use this for initialization
+    void Start()
+    {
+        Instance = this;
+        CurrentCharge = MaxCharge;
+        _drainRate = 1.0f;
+        _isOn = Beam.enabled;
 
-	    _maxWobble = 2.1f;
-	    _wobbleSpeed = 0.1f;
-	}
-	
-	// Update is called once per frame
-	void Update ()
-	{
-	    if (Input.GetKeyDown(KeyCode.L))
-	    {
-	        ToggleFlashlight();
-	    }
+        _wobbleSpeed = 0.34f;
+        _wobbleEps = _wobbleSpeed + 0.1f;
+    }
 
-	    // Get player velocity
-	    Vector2 velocity = gameObject.GetComponentInParent<Rigidbody2D>().velocity;
-        
-	    // Check if player is jumping or not
-	    if (velocity.y > 0)
-	    {
+    // Update is called once per frame
+    void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.L))
+        {
+            ToggleFlashlight();
+        }
 
-	    }
-        Debug.Log("V> " + velocity);
-	    // If player V > X then wobble the light
-	    if (Math.Abs(velocity.x) > 0)
-	    {
-	        _isWobbling = true;
+        if (_isOn)
+        {
+            var player = gameObject.GetComponentInParent<CharacterMovement>();
 
-	        Vector3 pos = transform.position;
+            if (player.isDead)
+            {
+                ToggleFlashlight();
+            }
 
-	        if (Math.Abs(pos.y) >= _maxWobble)
-	        {
-	            _wobbleSpeed *= -1;
-	        }
+            // Get player velocity
+            var velocity = player.isRunning ? 1 : 0;
+            var jump = player.isJumping;
 
-	        pos.y += _wobbleSpeed;
-	        transform.position = pos;
-	    }
-	    else
-	    {
-	        _isWobbling = false;
-	    }
+            // If player V > X then wobble the light
+            if (velocity > 0)
+            {
+                _isWobbling = true;
 
-	    // if V is < X then check for wobble
+                Vector3 pos = transform.localPosition;
 
-	    // If player is jumping then do Z
-	}
+                if (Math.Abs(pos.y) >= MaxWobble)
+                {
+                    _wobbleSpeed *= -1;
+                }
+
+                pos.y += _wobbleSpeed;
+                transform.localPosition = pos;
+            }
+            else if (_isWobbling)
+            {
+                Vector3 pos = transform.localPosition;
+
+                _wobbleSpeed = Math.Abs(_wobbleSpeed);
+
+                if (Math.Abs(pos.y) > _wobbleEps)
+                {
+                    if (pos.y > _wobbleSpeed)
+                    {
+                        pos.y -= _wobbleSpeed;
+                        transform.localPosition = pos;
+                    }
+                    else if (pos.y < _wobbleSpeed)
+                    {
+                        pos.y += _wobbleSpeed;
+                        transform.localPosition = pos;
+                    }
+                }
+                else
+                {
+                    _isWobbling = false;
+                }
+            }
+
+            // If player is jumping then do Z
+            if (jump && !_isWobbling)
+            {
+                _isWobbling = true;
+                var pos = transform.localPosition;
+                pos.y = JumpWobble;
+                transform.localPosition = pos;
+            }
+        }
+    }
 
     public void AddCharge(float charge)
     {
