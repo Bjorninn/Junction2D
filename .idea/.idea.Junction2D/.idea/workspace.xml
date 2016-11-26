@@ -1,7 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c7dea80-aaef-453b-86f3-df83da822b1f" name="Default" comment="" />
+    <list default="true" id="3c7dea80-aaef-453b-86f3-df83da822b1f" name="Default" comment="">
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Assets/Materials/FlashShader.shader" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Assets/Scripts/Battery.cs" afterPath="$PROJECT_DIR$/../../Assets/Scripts/Battery.cs" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Assets/Scripts/FlashLight.cs" afterPath="$PROJECT_DIR$/../../Assets/Scripts/FlashLight.cs" />
+    </list>
     <ignored path="Junction2D.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
@@ -21,7 +26,7 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Test.cs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Test.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../Assets/Scripts/Test.cs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="180">
@@ -36,6 +41,52 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Battery.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../Assets/Scripts/Battery.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="179">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding>
+                <marker date="1480147723000" expanded="true" signature="6:44" ph="..." />
+                <marker date="1480147723000" expanded="true" signature="91:615" ph="{...}" />
+                <marker date="1480147723000" expanded="true" signature="182:188" ph="{...}" />
+                <marker date="1480147723000" expanded="true" signature="243:249" ph="{...}" />
+                <marker date="1480147723000" expanded="true" signature="277:471" ph="{...}" />
+                <marker date="1480147723000" expanded="true" signature="519:613" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FlashLight.cs" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/../../Assets/Scripts/FlashLight.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="214">
+              <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+              <folding>
+                <marker date="1480147866000" expanded="true" signature="6:44" ph="..." />
+                <marker date="1480147866000" expanded="true" signature="85:1559" ph="{...}" />
+                <marker date="1480147866000" expanded="true" signature="356:441" ph="{...}" />
+                <marker date="1480147866000" expanded="true" signature="495:582" ph="{...}" />
+                <marker date="1480147866000" expanded="true" signature="623:767" ph="{...}" />
+                <marker date="1480147866000" expanded="true" signature="800:1146" ph="{...}" />
+                <marker date="1480147866000" expanded="true" signature="1182:1557" ph="{...}" />
+                <marker date="1480147866000" expanded="true" signature="1320:1428" ph="/* If the player tries to turn the light on but it has no charge ... */" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FlashShader.shader" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../Assets/Materials/FlashShader.shader">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="135">
+              <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
     </leaf>
   </component>
   <component name="Git.Settings">
@@ -45,6 +96,10 @@
     <option name="CHANGED_PATHS">
       <list>
         <option value="$PROJECT_DIR$/../../Assets/Scripts/Test.cs" />
+        <option value="$PROJECT_DIR$/../../Assets/Scripts/Battery.cs" />
+        <option value="$PROJECT_DIR$/../../Assets/Scripts/FlashLight.cs" />
+        <option value="$PROJECT_DIR$/../../Assets/Materials/NewSurfaceShader.shader" />
+        <option value="$PROJECT_DIR$/../../Assets/Materials/FlashShader.shader" />
       </list>
     </option>
   </component>
@@ -141,11 +196,12 @@
       <updated>1480096258664</updated>
       <workItem from="1480096263509" duration="360000" />
       <workItem from="1480096732642" duration="174000" />
+      <workItem from="1480145489246" duration="1859000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="534000" />
+    <option name="totallyTimeSpent" value="2393000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -214,6 +270,54 @@
             <marker date="1480096739000" expanded="true" signature="130:136" ph="{...}" />
             <marker date="1480096739000" expanded="true" signature="191:197" ph="{...}" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Assets/Scripts/Battery.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="179">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <marker date="1480147723000" expanded="true" signature="6:44" ph="..." />
+            <marker date="1480147723000" expanded="true" signature="91:615" ph="{...}" />
+            <marker date="1480147723000" expanded="true" signature="182:188" ph="{...}" />
+            <marker date="1480147723000" expanded="true" signature="243:249" ph="{...}" />
+            <marker date="1480147723000" expanded="true" signature="277:471" ph="{...}" />
+            <marker date="1480147723000" expanded="true" signature="519:613" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Assets/Scripts/FlashLight.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="214">
+          <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
+          <folding>
+            <marker date="1480147866000" expanded="true" signature="6:44" ph="..." />
+            <marker date="1480147866000" expanded="true" signature="85:1559" ph="{...}" />
+            <marker date="1480147866000" expanded="true" signature="356:441" ph="{...}" />
+            <marker date="1480147866000" expanded="true" signature="495:582" ph="{...}" />
+            <marker date="1480147866000" expanded="true" signature="623:767" ph="{...}" />
+            <marker date="1480147866000" expanded="true" signature="800:1146" ph="{...}" />
+            <marker date="1480147866000" expanded="true" signature="1182:1557" ph="{...}" />
+            <marker date="1480147866000" expanded="true" signature="1320:1428" ph="/* If the player tries to turn the light on but it has no charge ... */" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Assets/Materials/NewSurfaceShader.shader">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Assets/Materials/FlashShader.shader">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="135">
+          <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
+          <folding />
         </state>
       </provider>
     </entry>
