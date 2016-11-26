@@ -129,6 +129,16 @@ public class CharacterMovement : MonoBehaviour {
                 if (grounded)
                 {
                     float h = Input.GetAxis("Horizontal");
+
+					if(Mathf.Abs(h) < 0.05f){
+
+						idleMove = true;
+
+					} else {
+
+						idleMove = false;
+					}
+
                     if (h != 0f)
                     {
                         anim.SetFloat("Speed", Mathf.Abs(h));
@@ -185,7 +195,7 @@ public class CharacterMovement : MonoBehaviour {
             }
             if (idleMove && !tryingToJump)
             {
-
+			//	Debug.Log (idleTimeCounter);
                 // advance timer
                 idleTimeCounter += Time.deltaTime;
 
