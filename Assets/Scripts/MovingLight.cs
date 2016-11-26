@@ -8,11 +8,11 @@ public class MovingLight : MonoBehaviour {
 	public float speed = 10.0f;
 	public GameObject waypoints;
 
-	private Light m_light; // light
-	private int currentLight;
-	private Transform pos;
-	private Vector2 pos2d = new Vector2();
-	private float radius;
+	protected Light m_light; // light
+	protected int currentLight;
+	protected Transform pos;
+	protected Vector2 pos2d = new Vector2();
+	protected float radius;
 
 	// Use this for initialization
 	void Start () {
@@ -60,5 +60,16 @@ public class MovingLight : MonoBehaviour {
 		if ((target.position - pos.position).magnitude == 0.0f) {
 			currentLight = (currentLight + 1) % waypoints.transform.childCount;
 		}
+	}
+
+	public void SetWaypoints(GameObject wps){
+
+		this.waypoints = wps;
+	}
+
+	public void TurnBack(){
+	
+	
+		this.waypoints.transform.GetChild (1).transform.position = this.waypoints.transform.GetChild (0).transform.position;
 	}
 }
