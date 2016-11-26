@@ -47,10 +47,10 @@ public class MovingLight : MonoBehaviour {
 
 			if (collider.gameObject.tag == "Player") {
 
-			//	Destroy (collider.gameObject);
-				collider.gameObject.GetComponent<CharacterMovement>().Kill();
-				Invoke ("StopForOneSecond", 0.5f);
-				//StopForOneSecond ();
+                //	Destroy (collider.gameObject);
+                //Invoke("StopForOneSecond", 0.5f);
+                collider.gameObject.GetComponent<CharacterMovement>().Kill();
+				StopForOneSecond ();
 			}
 		}
 

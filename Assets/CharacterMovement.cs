@@ -142,7 +142,12 @@ public class CharacterMovement : MonoBehaviour
 	{
 		if (!isDead)
 		{
-			isDead = true;
+            this.StopRunning();
+            this.StopJumping();
+            isDead = true;
+            anim.SetTrigger("Idle");
+            //anim.Stop();
+            
 			audio.PlayOneShot(reloadingSound, 0.1f);            
 			Invoke("_Kill", 1.0f);
 		}
@@ -152,7 +157,7 @@ public class CharacterMovement : MonoBehaviour
     {
         anim.SetTrigger("Death");
         audio.PlayOneShot(shootingSound, 0.5f);
-        timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
+        //timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
 
         if (mainMenuEnabled)
         {
@@ -168,7 +173,7 @@ public class CharacterMovement : MonoBehaviour
 
         GameObject scoreLabel = GameObject.FindGameObjectWithTag("ScoreLabel");
         var textComponent = scoreLabel.GetComponent<Text>();
-        textComponent.text = "Score: " + playerScore.ToString();
+        textComponent.text = "Flashlight charge: " + playerScore.ToString();
     }
 
 	void FixedUpdate()
