@@ -4,7 +4,7 @@ using System.Collections;
 public class TimerSpotlight : MonoBehaviour {
 
 	public GameObject lightPrefab;
-	public GameObject player;
+	//public GameObject player;
 
 	public bool spotlightCreated;
 
@@ -30,13 +30,13 @@ public class TimerSpotlight : MonoBehaviour {
 
 			Vector3 startPos = new Vector3 (-0.2f, 0.0f, 0.0f);
 			startPos = Camera.main.ViewportToWorldPoint (startPos);
-			startPos.y = player.transform.position.y;
+			startPos.y = y;//player.transform.position.y;
 
 
 			Vector3 endPos = new Vector3 (1.2f, 0.0f, 0.0f);
 			endPos = Camera.main.ViewportToWorldPoint (endPos);
 
-			endPos.y = player.transform.position.y;
+			endPos.y = y;//player.transform.position.y;
 
 
 			GameObject wps = new GameObject ();
