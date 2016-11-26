@@ -117,8 +117,8 @@ public class CharacterMovement : MonoBehaviour
         if (!isDead)
         {
             isDead = true;
-            audio.PlayOneShot(reloadingSound, 0.3f);
             timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
+            audio.PlayOneShot(reloadingSound, 0.1f);            
             Invoke("_Kill", 1.0f);
         }
     }
@@ -126,7 +126,8 @@ public class CharacterMovement : MonoBehaviour
     private void _Kill()
     {
         anim.SetTrigger("Death");
-        audio.PlayOneShot(shootingSound, 0.5f);   
+        audio.PlayOneShot(shootingSound, 0.5f);
+   
     }
 
   
