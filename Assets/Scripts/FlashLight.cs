@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using System.Collections;
 
 public class FlashLight : MonoBehaviour
@@ -11,7 +12,9 @@ public class FlashLight : MonoBehaviour
     private float _drainRate;
 
     private bool _isOn;
-
+    private float _maxWobble;
+    private float _wobbleSpeed;
+    private bool _isWobbling;
 
 	// Use this for initialization
 	void Start ()
@@ -20,6 +23,9 @@ public class FlashLight : MonoBehaviour
 	    CurrentCharge = MaxCharge;
 	    _drainRate = 1.0f;
 	    _isOn = Beam.enabled;
+
+	    _maxWobble = 2.1f;
+	    _wobbleSpeed = 0.1f;
 	}
 	
 	// Update is called once per frame
@@ -29,6 +35,39 @@ public class FlashLight : MonoBehaviour
 	    {
 	        ToggleFlashlight();
 	    }
+
+	    // Get player velocity
+	    Vector2 velocity = gameObject.GetComponentInParent<Rigidbody2D>().velocity;
+        
+	    // Check if player is jumping or not
+	    if (velocity.y > 0)
+	    {
+
+	    }
+        Debug.Log("V> " + velocity);
+	    // If player V > X then wobble the light
+	    if (Math.Abs(velocity.x) > 0)
+	    {
+	        _isWobbling = true;
+
+	        Vector3 pos = transform.position;
+
+	        if (Math.Abs(pos.y) >= _maxWobble)
+	        {
+	            _wobbleSpeed *= -1;
+	        }
+
+	        pos.y += _wobbleSpeed;
+	        transform.position = pos;
+	    }
+	    else
+	    {
+	        _isWobbling = false;
+	    }
+
+	    // if V is < X then check for wobble
+
+	    // If player is jumping then do Z
 	}
 
     public void AddCharge(float charge)
@@ -61,7 +100,6 @@ public class FlashLight : MonoBehaviour
     {
         _isOn = !_isOn;
 
-        //Beam.gameObject.SetActive(_isOn);
         Beam.enabled = _isOn;
 
         if (CurrentCharge <= 0 && _isOn)

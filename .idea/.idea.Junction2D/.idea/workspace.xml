@@ -2,8 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c7dea80-aaef-453b-86f3-df83da822b1f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Assets/Scenes/test-Bjorn.unity.meta" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Assets/Prefabs/Player.prefab" afterPath="$PROJECT_DIR$/../../Assets/Prefabs/Player.prefab" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Assets/Scenes/test-Bjorn.unity" afterPath="$PROJECT_DIR$/../../Assets/Scenes/test-Bjorn.unity" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Assets/Scripts/FlashLight.cs" afterPath="$PROJECT_DIR$/../../Assets/Scripts/FlashLight.cs" />
@@ -47,17 +45,18 @@
       <file leaf-file-name="FlashLight.cs" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/../../Assets/Scripts/FlashLight.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="180">
-              <caret line="47" column="40" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
+            <state relative-caret-position="240">
+              <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
               <folding>
-                <marker date="1480164825000" expanded="true" signature="6:44" ph="..." />
-                <marker date="1480164825000" expanded="true" signature="85:1554" ph="{...}" />
-                <marker date="1480164825000" expanded="true" signature="356:467" ph="{...}" />
-                <marker date="1480164825000" expanded="true" signature="521:608" ph="{...}" />
-                <marker date="1480164825000" expanded="true" signature="649:793" ph="{...}" />
-                <marker date="1480164825000" expanded="true" signature="826:1109" ph="{...}" />
-                <marker date="1480164825000" expanded="true" signature="1145:1552" ph="{...}" />
-                <marker date="1480164825000" expanded="true" signature="1315:1423" ph="/* If the player tries to turn the light on but it has no charge ... */" />
+                <marker date="1480167525000" expanded="true" signature="6:58" ph="..." />
+                <marker date="1480167525000" expanded="true" signature="99:2377" ph="{...}" />
+                <marker date="1480167525000" expanded="true" signature="461:623" ph="{...}" />
+                <marker date="1480167525000" expanded="true" signature="677:1475" ph="{...}" />
+                <marker date="1480167525000" expanded="true" signature="1396:1472" ph="/* if V is &lt; X then check for wobble ... */" />
+                <marker date="1480167525000" expanded="true" signature="1516:1660" ph="{...}" />
+                <marker date="1480167525000" expanded="true" signature="1693:1976" ph="{...}" />
+                <marker date="1480167525000" expanded="true" signature="2012:2375" ph="{...}" />
+                <marker date="1480167525000" expanded="true" signature="2138:2246" ph="/* If the player tries to turn the light on but it has no charge ... */" />
               </folding>
             </state>
           </provider>
@@ -66,23 +65,23 @@
       <file leaf-file-name="CharacterMovement.cs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../Assets/CharacterMovement.cs">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="124">
-              <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+            <state relative-caret-position="277">
+              <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
               <folding>
-                <marker date="1480163998000" expanded="true" signature="66:5943" ph="{...}" />
-                <marker date="1480163998000" expanded="true" signature="116:166" ph="{...}" />
-                <marker date="1480163998000" expanded="true" signature="1146:1351" ph="{...}" />
-                <marker date="1480163998000" expanded="true" signature="1403:2528" ph="{...}" />
-                <marker date="1480163998000" expanded="true" signature="2552:2681" ph="{...}" />
-                <marker date="1480163998000" expanded="true" signature="2700:2796" ph="{...}" />
-                <marker date="1480163998000" expanded="true" signature="2713:2787" ph="/* if (Time.time &gt; deathTimer) ... */" />
-                <marker date="1480163998000" expanded="true" signature="2820:5511" ph="{...}" />
-                <marker date="1480163998000" expanded="true" signature="4884:4948" ph="/* Debug.Log (idleTimeCounter); ... */" />
-                <marker date="1480163998000" expanded="true" signature="5315:5370" ph="/* if player moves,reset timer ... */" />
-                <marker date="1480163998000" expanded="true" signature="5535:5632" ph="{...}" />
-                <marker date="1480163998000" expanded="true" signature="5675:5716" ph="{...}" />
-                <marker date="1480163998000" expanded="true" signature="5754:5792" ph="{...}" />
-                <marker date="1480163998000" expanded="true" signature="5807:5941" ph="{...}" />
+                <marker date="1480165419000" expanded="true" signature="66:5943" ph="{...}" />
+                <marker date="1480165419000" expanded="true" signature="116:166" ph="{...}" />
+                <marker date="1480165419000" expanded="true" signature="1146:1351" ph="{...}" />
+                <marker date="1480165419000" expanded="true" signature="1403:2528" ph="{...}" />
+                <marker date="1480165419000" expanded="true" signature="2552:2681" ph="{...}" />
+                <marker date="1480165419000" expanded="true" signature="2700:2796" ph="{...}" />
+                <marker date="1480165419000" expanded="true" signature="2713:2787" ph="/* if (Time.time &gt; deathTimer) ... */" />
+                <marker date="1480165419000" expanded="true" signature="2820:5511" ph="{...}" />
+                <marker date="1480165419000" expanded="true" signature="4884:4948" ph="/* Debug.Log (idleTimeCounter); ... */" />
+                <marker date="1480165419000" expanded="true" signature="5315:5370" ph="/* if player moves,reset timer ... */" />
+                <marker date="1480165419000" expanded="true" signature="5535:5632" ph="{...}" />
+                <marker date="1480165419000" expanded="true" signature="5675:5716" ph="{...}" />
+                <marker date="1480165419000" expanded="true" signature="5754:5792" ph="{...}" />
+                <marker date="1480165419000" expanded="true" signature="5807:5941" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -101,6 +100,7 @@
         <option value="$PROJECT_DIR$/../../Assets/Materials/NewSurfaceShader.shader" />
         <option value="$PROJECT_DIR$/../../Assets/Materials/FlashShader.shader" />
         <option value="$PROJECT_DIR$/../../Assets/2DLightAsset/Scripts/2DLight/DynamicLight.cs" />
+        <option value="$PROJECT_DIR$/../../Assets/CharacterMovement.cs" />
         <option value="$PROJECT_DIR$/../../Assets/Scripts/FlashLight.cs" />
       </list>
     </option>
@@ -198,12 +198,12 @@
       <updated>1480096258664</updated>
       <workItem from="1480096263509" duration="360000" />
       <workItem from="1480096732642" duration="174000" />
-      <workItem from="1480145489246" duration="3154000" />
+      <workItem from="1480145489246" duration="5444000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="3688000" />
+    <option name="totallyTimeSpent" value="5978000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -316,40 +316,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../../Assets/CharacterMovement.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="124">
-          <caret line="63" column="0" selection-start-line="63" selection-start-column="0" selection-end-line="63" selection-end-column="0" />
+        <state relative-caret-position="277">
+          <caret line="130" column="0" selection-start-line="130" selection-start-column="0" selection-end-line="131" selection-end-column="0" />
           <folding>
-            <marker date="1480163998000" expanded="true" signature="66:5943" ph="{...}" />
-            <marker date="1480163998000" expanded="true" signature="116:166" ph="{...}" />
-            <marker date="1480163998000" expanded="true" signature="1146:1351" ph="{...}" />
-            <marker date="1480163998000" expanded="true" signature="1403:2528" ph="{...}" />
-            <marker date="1480163998000" expanded="true" signature="2552:2681" ph="{...}" />
-            <marker date="1480163998000" expanded="true" signature="2700:2796" ph="{...}" />
-            <marker date="1480163998000" expanded="true" signature="2713:2787" ph="/* if (Time.time &gt; deathTimer) ... */" />
-            <marker date="1480163998000" expanded="true" signature="2820:5511" ph="{...}" />
-            <marker date="1480163998000" expanded="true" signature="4884:4948" ph="/* Debug.Log (idleTimeCounter); ... */" />
-            <marker date="1480163998000" expanded="true" signature="5315:5370" ph="/* if player moves,reset timer ... */" />
-            <marker date="1480163998000" expanded="true" signature="5535:5632" ph="{...}" />
-            <marker date="1480163998000" expanded="true" signature="5675:5716" ph="{...}" />
-            <marker date="1480163998000" expanded="true" signature="5754:5792" ph="{...}" />
-            <marker date="1480163998000" expanded="true" signature="5807:5941" ph="{...}" />
+            <marker date="1480165419000" expanded="true" signature="66:5943" ph="{...}" />
+            <marker date="1480165419000" expanded="true" signature="116:166" ph="{...}" />
+            <marker date="1480165419000" expanded="true" signature="1146:1351" ph="{...}" />
+            <marker date="1480165419000" expanded="true" signature="1403:2528" ph="{...}" />
+            <marker date="1480165419000" expanded="true" signature="2552:2681" ph="{...}" />
+            <marker date="1480165419000" expanded="true" signature="2700:2796" ph="{...}" />
+            <marker date="1480165419000" expanded="true" signature="2713:2787" ph="/* if (Time.time &gt; deathTimer) ... */" />
+            <marker date="1480165419000" expanded="true" signature="2820:5511" ph="{...}" />
+            <marker date="1480165419000" expanded="true" signature="4884:4948" ph="/* Debug.Log (idleTimeCounter); ... */" />
+            <marker date="1480165419000" expanded="true" signature="5315:5370" ph="/* if player moves,reset timer ... */" />
+            <marker date="1480165419000" expanded="true" signature="5535:5632" ph="{...}" />
+            <marker date="1480165419000" expanded="true" signature="5675:5716" ph="{...}" />
+            <marker date="1480165419000" expanded="true" signature="5754:5792" ph="{...}" />
+            <marker date="1480165419000" expanded="true" signature="5807:5941" ph="{...}" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/../../Assets/Scripts/FlashLight.cs">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="180">
-          <caret line="47" column="40" selection-start-line="47" selection-start-column="40" selection-end-line="47" selection-end-column="40" />
+        <state relative-caret-position="240">
+          <caret line="40" column="8" selection-start-line="40" selection-start-column="8" selection-end-line="40" selection-end-column="8" />
           <folding>
-            <marker date="1480164825000" expanded="true" signature="6:44" ph="..." />
-            <marker date="1480164825000" expanded="true" signature="85:1554" ph="{...}" />
-            <marker date="1480164825000" expanded="true" signature="356:467" ph="{...}" />
-            <marker date="1480164825000" expanded="true" signature="521:608" ph="{...}" />
-            <marker date="1480164825000" expanded="true" signature="649:793" ph="{...}" />
-            <marker date="1480164825000" expanded="true" signature="826:1109" ph="{...}" />
-            <marker date="1480164825000" expanded="true" signature="1145:1552" ph="{...}" />
-            <marker date="1480164825000" expanded="true" signature="1315:1423" ph="/* If the player tries to turn the light on but it has no charge ... */" />
+            <marker date="1480167525000" expanded="true" signature="6:58" ph="..." />
+            <marker date="1480167525000" expanded="true" signature="99:2377" ph="{...}" />
+            <marker date="1480167525000" expanded="true" signature="461:623" ph="{...}" />
+            <marker date="1480167525000" expanded="true" signature="677:1475" ph="{...}" />
+            <marker date="1480167525000" expanded="true" signature="1396:1472" ph="/* if V is &lt; X then check for wobble ... */" />
+            <marker date="1480167525000" expanded="true" signature="1516:1660" ph="{...}" />
+            <marker date="1480167525000" expanded="true" signature="1693:1976" ph="{...}" />
+            <marker date="1480167525000" expanded="true" signature="2012:2375" ph="{...}" />
+            <marker date="1480167525000" expanded="true" signature="2138:2246" ph="/* If the player tries to turn the light on but it has no charge ... */" />
           </folding>
         </state>
       </provider>
