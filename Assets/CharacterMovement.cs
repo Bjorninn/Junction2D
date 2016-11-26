@@ -37,15 +37,11 @@ public class CharacterMovement : MonoBehaviour {
     public float deathTimer = 10f;
     private bool dead = false;
     public float jumpHorizontalForce = 1000f;
-<<<<<<< Updated upstream
 	private bool idleMove;
 	private bool tryingToJump;
 	private float idleTimeLimit;
 	private float idleTimeCounter;
     public float jumpHorizontalForce = 1000f;
-=======
-
->>>>>>> Stashed changes
 
     // Use this for initialization
 	void Awake()
@@ -139,7 +135,6 @@ public class CharacterMovement : MonoBehaviour {
             else if (Time.time - slideStart >= slideDuration)
             {
                 sliding = false;
-<<<<<<< Updated upstream
 
                 rb2d.velocity = Vector2.zero;
                 //SetStandingTransform();
@@ -160,15 +155,6 @@ public class CharacterMovement : MonoBehaviour {
             rb2d.velocity = Vector2.zero;
 			//SetStandingTransform();
 
-=======
-
-                rb2d.velocity = Vector2.zero;
-                //SetStandingTransform();
-
-            }
-        
-
->>>>>>> Stashed changes
         if (jump)
         {
             anim.SetBool("Jumping", true);
@@ -186,7 +172,6 @@ public class CharacterMovement : MonoBehaviour {
             sliding = true;
             slide = false;
             //SetSlidingTransform();
-<<<<<<< Updated upstream
 		if (idleMove && !tryingToJump) {
 
 			// advance timer
@@ -206,11 +191,6 @@ public class CharacterMovement : MonoBehaviour {
 			timerSpotlight.GetComponent<TimerSpotlight> ().TurnBack ();
 		}
 	}
-=======
-        }
-    }
-}
->>>>>>> Stashed changes
 
 
 	public void Die(){
