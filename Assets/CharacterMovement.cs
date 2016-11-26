@@ -18,8 +18,8 @@ public class CharacterMovement : MonoBehaviour
     }
 
     [HideInInspector]
-    public bool doJump = false;
-    public float jumpVerticalForce = 1000f;
+    public bool doHighJump = false;
+    public float highJumpVerticalForce = 1000f;
     public Transform groundCheck;
     public float speed = 20;
     public float slideForce = 100;
@@ -30,13 +30,13 @@ public class CharacterMovement : MonoBehaviour
     private Animator anim;
     private Rigidbody2D rb2d;
     private Transform tran;
-    private BoxCollider2D box;
+    private PolygonCollider2D polyCollider;
     private bool doSlide = false;
     private bool isSliding = false;
     private float slideStart;
     public float deathTimer = 10f;
     private bool isDead = false;
-    public float jumpHorizontalForce = 1000f;
+    public float highJumpHorizontalForce = 1000f;
 
     private bool idleMove;
     private bool tryingToJump;
@@ -47,6 +47,16 @@ public class CharacterMovement : MonoBehaviour
     private float timescaleDefault;
     private bool isJumping = false;
     private bool isRunning = false;
+    public float chasersPosition;
+    public float playersAdvance = 100;
+    public float chasersSpeed = 1;
+    public int longJumpHorizontalForce = 300;
+    public float longJumpVerticalForce = 200;
+    private bool doLongJump;
+
+    public PolygonCollider2D slidingCollider;
+    private PolygonCollider2D tempCollider;
+    private Vector2[] oldPath;
 
     // Use this for initialization
     void Awake()
@@ -54,10 +64,13 @@ public class CharacterMovement : MonoBehaviour
         anim = GetComponent<Animator>();
         rb2d = GetComponent<Rigidbody2D>();
         tran = GetComponent<Transform>();
-        box = GetComponent<BoxCollider2D>();
+        polyCollider = GetComponent<PolygonCollider2D>();
+
+
 
         idleTimeLimit = 5.0f;
         idleTimeCounter = 0.0f;
+        chasersPosition = tran.position.x - playersAdvance;
     }
 
     // Update is called once per frame
@@ -71,20 +84,11 @@ public class CharacterMovement : MonoBehaviour
         isGrounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
         var v = Input.GetAxis("Vertical");
+        var h = Input.GetAxis("Horizontal");
 
         if (isGrounded && isJumping)
         {
-            isJumping = false;
-            anim.SetBool("Jumping", false);
-        }
-
-        if (v.Equals(0))
-        {
-            tryingToJump = false;
-        }
-        else
-        {
-            tryingToJump = true;
+            StopJumping();
         }
 
         if (isGrounded && !isSliding && v != 0)
@@ -93,7 +97,14 @@ public class CharacterMovement : MonoBehaviour
             //We can only jump or slide, not both
             if (v > 0)
             {
-                doJump = true;
+                if (h == 0)
+                {
+                    doHighJump = true;
+                }
+                else
+                {
+                    doLongJump = true;
+                }
             }
             else if (v < 0)
             {
@@ -101,8 +112,22 @@ public class CharacterMovement : MonoBehaviour
             }
         }
 
+        MoveChaser();
+
     }
 
+    private void StopJumping()
+    {
+        isJumping = false;
+        anim.SetBool("Jumping", false);
+        rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+    }
+
+    private void MoveChaser()
+    {
+        chasersPosition += Time.deltaTime*chasersSpeed;
+
+    }
 
 
     public void Kill()
@@ -118,10 +143,15 @@ public class CharacterMovement : MonoBehaviour
     {
         var h = Input.GetAxis("Horizontal");
         if (isDead) return;
-        if (doJump)
+        if (doHighJump)
         {
             StopRunning();
-            Jump();
+            HighJump();
+        }
+        else if(doLongJump)
+        {
+            StopRunning();
+            LongJump();
         }
         else if (doSlide)
         {
@@ -159,18 +189,11 @@ public class CharacterMovement : MonoBehaviour
             StopSliding();
         }
 
-        
-        if (idleMove && !tryingToJump)
-        {
-            //	Debug.Log (idleTimeCounter);
-            // advance timer
-            idleTimeCounter += Time.deltaTime;
 
-            // if too long idle
-            if (idleTimeCounter > idleTimeLimit)
-            {
-                timerSpotlight.GetComponent<TimerSpotlight>().CreateSpotlight(tran.position.y);
-            }
+
+        if (chasersPosition>= tran.position.x)
+        {
+            timerSpotlight.GetComponent<TimerSpotlight>().CreateSpotlight(tran.position.y);
         }
 
 
@@ -179,7 +202,7 @@ public class CharacterMovement : MonoBehaviour
             // if player moves,reset timer
             // reset
             idleTimeCounter = 0;
-            timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
+            //timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
         }
     }
 
@@ -187,7 +210,7 @@ public class CharacterMovement : MonoBehaviour
     {
         isSliding = false;
         rb2d.velocity = new Vector2(0, rb2d.velocity.y); //we don't want to prevent it from stopping falling
-        //SetStandingTransform();
+        SetStandingTransform();
     }
 
     private void StopRunning()
@@ -208,12 +231,22 @@ public class CharacterMovement : MonoBehaviour
         anim.SetBool("Running", true);
     }
 
-    private void Jump()
+    private void HighJump()
     {
         anim.SetBool("Jumping", true);
-        anim.SetBool("Running", false);
-        rb2d.AddForce(new Vector2(jumpHorizontalForce*actualDirectionVector, jumpVerticalForce), ForceMode2D.Impulse);
-        doJump = false;
+        rb2d.AddForce(new Vector2(highJumpHorizontalForce*actualDirectionVector, 0f), ForceMode2D.Force);
+        rb2d.AddForce(new Vector2(0f, highJumpVerticalForce), ForceMode2D.Impulse);
+        doHighJump = false;
+        isJumping = true;
+    }
+
+    private void LongJump()
+    {
+        anim.SetBool("Jumping", true);
+        rb2d.AddForce(new Vector2(longJumpHorizontalForce * actualDirectionVector,0f), ForceMode2D.Impulse);
+        rb2d.AddForce(new Vector2(0f, longJumpVerticalForce), ForceMode2D.Force);
+        doLongJump = false;
+        isJumping = true;
     }
 
     private void Slide()
@@ -221,10 +254,10 @@ public class CharacterMovement : MonoBehaviour
         slideStart = Time.time;
         anim.SetBool("Running", false);
         anim.SetTrigger("Sliding");
-        rb2d.AddForce(new Vector2(slideForce*actualDirectionVector, 0f));
+        rb2d.AddForce(new Vector2(slideForce*actualDirectionVector, 0f), ForceMode2D.Impulse);;
         isSliding = true;
         doSlide = false;
-        //SetSlidingTransform();
+        SetSlidingTransform();
     }
 
 
@@ -239,12 +272,16 @@ public class CharacterMovement : MonoBehaviour
 
     private void SetSlidingTransform()
     {
-        box.size = new Vector2(2, 0.5f);
+        //polyCollider.SetPath(0, new Vector2[] {new Vector2(-3.6f, 0), new Vector2(-3.6f, -4.92f), new Vector2(3.6f, -4.92f), new Vector2(3.6f, 0)});
+        oldPath = polyCollider.GetPath(0);
+        polyCollider.SetPath(0, slidingCollider.GetPath(0));
+
     }
 
     private void SetStandingTransform()
     {
-        box.size = new Vector3(1, 1);
+        polyCollider.SetPath(0, oldPath);
+        
     }
 
 
