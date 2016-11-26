@@ -89,10 +89,10 @@ public class CharacterMovement : MonoBehaviour {
 
     void Stroke()
     {
-        if (Time.time > deathTimer)
+      /**  if (Time.time > deathTimer)
         {
             Kill();
-        }   
+        }*/   
     }
 
 	void FixedUpdate()
