@@ -35,15 +35,11 @@ public class CharacterMovement : MonoBehaviour {
     public float deathTimer = 10f;
     private bool dead = false;
     public float jumpHorizontalForce = 1000f;
-<<<<<<< Updated upstream
 
 	private bool idleMove;
 	private bool tryingToJump;
 	private float idleTimeLimit;
 	private float idleTimeCounter;
-=======
->>>>>>> Stashed changes
-
 
     // Use this for initialization
 	void Awake()
@@ -109,22 +105,11 @@ public class CharacterMovement : MonoBehaviour {
                 if (grounded)
                 {
                     float h = Input.GetAxis("Horizontal");
-<<<<<<< Updated upstream
-                    if (Mathf.Abs(h) < 0.05f)
-                    {
-                        idleMove = true;
-                    }
-                    else
-                    {
-                        idleMove = false;
-                    }
-=======
->>>>>>> Stashed changes
                     if (h != 0f)
                     {
                         anim.SetFloat("Speed", Mathf.Abs(h));
 
-                        tran.Translate(Vector3.right * h * Time.deltaTime * speed);
+                        tran.Translate(Vector3.right*h*Time.deltaTime*speed);
 
                         if (h > 0 && !facingRight)
                             Flip();
@@ -148,72 +133,57 @@ public class CharacterMovement : MonoBehaviour {
             else if (Time.time - slideStart >= slideDuration)
             {
                 sliding = false;
-<<<<<<< Updated upstream
 
                 rb2d.velocity = Vector2.zero;
                 //SetStandingTransform();
 
             }
 
-			
-				
-		}
-        
 
-=======
-
-                rb2d.velocity = Vector2.zero;
-                //SetStandingTransform();
-
+            if (jump)
+            {
+                anim.SetBool("Jumping", true);
+                anim.SetBool("Running", false);
+                rb2d.AddForce(new Vector2(jumpHorizontalForce*actualDirectionVector, jumpVerticalForce));
+                jump = false;
             }
-        
 
->>>>>>> Stashed changes
-        if (jump)
-        {
-            anim.SetBool("Jumping", true);
-            anim.SetBool("Running", false);
-            rb2d.AddForce(new Vector2(jumpHorizontalForce * actualDirectionVector, jumpVerticalForce));
-            jump = false;
+            if (slide)
+            {
+                slideStart = Time.time;
+                anim.SetBool("Running", false);
+                anim.SetTrigger("Sliding");
+                rb2d.AddForce(new Vector2(slideForce*actualDirectionVector, 0f));
+                sliding = true;
+                slide = false;
+                //SetSlidingTransform();
+            }
+            if (idleMove && !tryingToJump)
+            {
+
+                // advance timer
+                idleTimeCounter += Time.deltaTime;
+
+                // if too long idle
+                if (idleTimeCounter > idleTimeLimit)
+                {
+                    timerSpotlight.GetComponent<TimerSpotlight>().CreateSpotlight(tran.position.y);
+                }
+            }
+
+
+            if (!idleMove || tryingToJump)
+            {
+                // if player moves,reset timer
+                // reset
+                idleTimeCounter = 0;
+                timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
+            }
         }
-
-        if (slide)
-        {
-            slideStart = Time.time;
-            anim.SetBool("Running", false);
-            anim.SetTrigger("Sliding");
-            rb2d.AddForce(new Vector2(slideForce*actualDirectionVector, 0f));
-            sliding = true;
-            slide = false;
-            //SetSlidingTransform();
-        }
-<<<<<<< Updated upstream
-        if (idleMove && !tryingToJump) {
-
-			// advance timer
-			idleTimeCounter += Time.deltaTime;
-
-			// if too long idle
-			if (idleTimeCounter > idleTimeLimit) {
-				timerSpotlight.GetComponent<TimerSpotlight> ().CreateSpotlight (tran.position.y);	
-			}
-		} 
-
-
-		if (!idleMove || tryingToJump){
-		// if player moves,reset timer
-			// reset
-			idleTimeCounter = 0;
-			timerSpotlight.GetComponent<TimerSpotlight> ().TurnBack ();
-		}
-	}
-=======
     }
-}
->>>>>>> Stashed changes
 
 
-	public void Die(){
+    public void Die(){
 	
 		Destroy (this.gameObject);
 		timerSpotlight.GetComponent<TimerSpotlight> ().TurnBack ();
