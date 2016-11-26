@@ -1,4 +1,4 @@
-
+﻿using UnityEngine;
 public class CharacterMovement : MonoBehaviour {
 
 	// Use this for initialization
@@ -35,18 +35,12 @@ public class CharacterMovement : MonoBehaviour {
     public float deathTimer = 10f;
     private bool dead = false;
     public float jumpHorizontalForce = 1000f;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
+
 	private bool idleMove;
 	private bool tryingToJump;
 	private float idleTimeLimit;
 	private float idleTimeCounter;
-    public float jumpHorizontalForce = 1000f;
-=======
-=======
->>>>>>> Stashed changes
 
->>>>>>> Stashed changes
 
     // Use this for initialization
 	void Awake()
@@ -112,6 +106,14 @@ public class CharacterMovement : MonoBehaviour {
                 if (grounded)
                 {
                     float h = Input.GetAxis("Horizontal");
+                    if (Mathf.Abs(h) < 0.05f)
+                    {
+                        idleMove = true;
+                    }
+                    else
+                    {
+                        idleMove = false;
+                    }
                     if (h != 0f)
                     {
                         anim.SetFloat("Speed", Mathf.Abs(h));
@@ -140,46 +142,17 @@ public class CharacterMovement : MonoBehaviour {
             else if (Time.time - slideStart >= slideDuration)
             {
                 sliding = false;
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
 
                 rb2d.velocity = Vector2.zero;
                 //SetStandingTransform();
 
             }
 
-			if (Mathf.Abs (h) < 0.05f) {
-				idleMove = true;
-			} else {
-				idleMove = false;
-			}
+			
 				
 		}
-		else if(Time.time - slideStart >= slideDuration)
-		{
-			sliding = false;
-            
-            rb2d.velocity = Vector2.zero;
-			//SetStandingTransform();
-
-=======
-
-                rb2d.velocity = Vector2.zero;
-                //SetStandingTransform();
-
-            }
         
 
->>>>>>> Stashed changes
-=======
-
-                rb2d.velocity = Vector2.zero;
-                //SetStandingTransform();
-
-            }
-        
-
->>>>>>> Stashed changes
         if (jump)
         {
             anim.SetBool("Jumping", true);
@@ -197,9 +170,8 @@ public class CharacterMovement : MonoBehaviour {
             sliding = true;
             slide = false;
             //SetSlidingTransform();
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-		if (idleMove && !tryingToJump) {
+        }
+        if (idleMove && !tryingToJump) {
 
 			// advance timer
 			idleTimeCounter += Time.deltaTime;
@@ -225,21 +197,6 @@ public class CharacterMovement : MonoBehaviour {
 		Destroy (this.gameObject);
 		timerSpotlight.GetComponent<TimerSpotlight> ().TurnBack ();
 	}
-=======
-        }
-    }
-}
->>>>>>> Stashed changes
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-<<<<<<< Updated upstream
-
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
-=======
->>>>>>> Stashed changes
 
 	private void SetSlidingTransform()
 	{
