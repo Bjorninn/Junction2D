@@ -51,7 +51,7 @@ public class CharacterMovement : MonoBehaviour {
 		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 
 		var v = Input.GetAxis("Vertical");
-		if (v > 0 && grounded)
+		if (v > 0 && grounded && !sliding)
 		{
 			jump = true;
 		}
@@ -66,27 +66,41 @@ public class CharacterMovement : MonoBehaviour {
 		if (!sliding)
 		{
 			float h = Input.GetAxis("Horizontal");
+            if (h != 0f)
+            {
+                anim.SetFloat("Speed", Mathf.Abs(h));
+                
+                tran.Translate(Vector3.right * h * Time.deltaTime * speed);
 
-			anim.SetFloat("Speed", Mathf.Abs(h));
-
-			tran.Translate(Vector3.right*h*Time.deltaTime*speed);
-
-			if (h > 0 && !facingRight)
-				Flip();
-			else if (h < 0 && facingRight)
-				Flip();
+                if (h > 0 && !facingRight)
+                    Flip();
+                else if (h < 0 && facingRight)
+                    Flip();
+                if (grounded)
+                {
+                    anim.SetBool("Running", true);
+                }
+                else
+                {
+                    anim.SetBool("Running", false);
+                }
+            }
+            else
+            {
+                anim.SetBool("Running", false);
+            }
 		}
 		else if(Time.time - slideStart >= slideDuration)
 		{
 			sliding = false;
 			rb2d.velocity = Vector2.zero;
-			SetStandingTransform();
+			//SetStandingTransform();
 
 		}
 
 		if (jump)
 		{
-			anim.SetTrigger("Jump");
+			anim.SetTrigger("Jumping");
 			rb2d.AddForce(new Vector2(0f, jumpForce));
 			jump = false;
 		}
@@ -94,11 +108,11 @@ public class CharacterMovement : MonoBehaviour {
 		if (slide)
 		{
 			slideStart = Time.time;
-			anim.SetTrigger("Slide");
+			anim.SetTrigger("Sliding");
 			rb2d.AddForce(new Vector2(slideForce * actualDirectionVector, 0f));
 			sliding = true;
 			slide = false;
-			SetSlidingTransform();
+			//SetSlidingTransform();
 		}
 	}
 
