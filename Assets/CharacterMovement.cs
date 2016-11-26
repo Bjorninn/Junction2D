@@ -47,7 +47,8 @@ public class CharacterMovement : MonoBehaviour
 	private float idleTimeCounter;
 
 	private bool mainMenuEnabled = false;
-	private float timescaleDefault;
+    private bool gameOverScreenEnabled = false;
+    private float timescaleDefault;
 	public bool isJumping { get; private set; }
     public bool isRunning { get; private set; }
 	public float chasersPosition;
@@ -81,7 +82,7 @@ public class CharacterMovement : MonoBehaviour
 	// Update is called once per frame
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.F))
+		if (Input.GetKeyDown(KeyCode.Escape) && !gameOverScreenEnabled)
 		{
 			PauseGameAndOpenMenu();
 		}
@@ -144,10 +145,11 @@ public class CharacterMovement : MonoBehaviour
 	{
 		if (!isDead)
 		{
+            isDead = true;
             this.StopRunning();
             this.StopJumping();
-            isDead = true;
             anim.SetTrigger("Idle");
+            gameOverScreenEnabled = true;
             //anim.Stop();
             
 			audio.PlayOneShot(reloadingSound, 0.1f);            
