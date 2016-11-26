@@ -31,13 +31,13 @@ public class TimerSpotlight : MonoBehaviour {
 			Vector3 startPos = new Vector3 (-0.2f, 0.0f, 0.0f);
 			startPos = Camera.main.ViewportToWorldPoint (startPos);
 			startPos.y = y;//player.transform.position.y;
-
+			startPos.z = -4;
 
 			Vector3 endPos = new Vector3 (1.2f, 0.0f, 0.0f);
 			endPos = Camera.main.ViewportToWorldPoint (endPos);
 
 			endPos.y = y;//player.transform.position.y;
-
+			endPos.z = -4;
 
 			GameObject wps = new GameObject ();
 
