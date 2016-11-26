@@ -109,7 +109,7 @@ public class CharacterMovement : MonoBehaviour {
                     {
                         anim.SetFloat("Speed", Mathf.Abs(h));
 
-                        tran.Translate(Vector3.right*h*Time.deltaTime*speed);
+                        tran.Translate(Vector3.right * h * Time.deltaTime * speed);
 
                         if (h > 0 && !facingRight)
                             Flip();
@@ -131,6 +131,7 @@ public class CharacterMovement : MonoBehaviour {
                 }
             }
             else if (Time.time - slideStart >= slideDuration)
+
             {
                 sliding = false;
 
@@ -188,6 +189,8 @@ public class CharacterMovement : MonoBehaviour {
 		Destroy (this.gameObject);
 		timerSpotlight.GetComponent<TimerSpotlight> ().TurnBack ();
 	}
+    
+
 
 	private void SetSlidingTransform()
 	{
