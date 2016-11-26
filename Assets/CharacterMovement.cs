@@ -85,6 +85,7 @@ public class CharacterMovement : MonoBehaviour {
     {
         anim.SetTrigger("Death");
         dead = true;
+		timerSpotlight.GetComponent<TimerSpotlight> ().TurnBack ();
     }
 
     void Stroke()
