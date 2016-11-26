@@ -23,12 +23,16 @@ public class CharacterMovement : MonoBehaviour {
 	public float slideForce = 100;
 	public float slideDuration = 2;
 	public GameObject timerSpotlight;
+    public AudioClip reloadingSound;
+    public AudioClip shootingSound;
 
-	private bool grounded = false;
+    private bool grounded = false;
 	private Animator anim;
 	private Rigidbody2D rb2d;
 	private Transform tran;
 	private BoxCollider2D box;
+    private AudioSource audio;
+
 	private bool slide = false;
 	private bool sliding = false;
 	private float slideStart;
@@ -51,8 +55,9 @@ public class CharacterMovement : MonoBehaviour {
 		rb2d = GetComponent<Rigidbody2D>();
 		tran = GetComponent<Transform>();
 		box = GetComponent<BoxCollider2D>();
+        audio = GetComponent<AudioSource>();
 
-		idleTimeLimit = 5.0f;
+        idleTimeLimit = 5.0f;
 		idleTimeCounter = 0.0f;
 	}
 
@@ -107,9 +112,19 @@ public class CharacterMovement : MonoBehaviour {
 
     public void Kill()
     {
+        if (!dead)
+        {
+            dead = true;
+            audio.PlayOneShot(reloadingSound, 0.3f);
+            timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
+            Invoke("_Kill", 1.0f);
+        }
+    }
+
+    private void _Kill()
+    {
         anim.SetTrigger("Death");
-        dead = true;
-		timerSpotlight.GetComponent<TimerSpotlight> ().TurnBack ();
+        audio.PlayOneShot(shootingSound, 0.5f);
     }
 
     void Stroke()
