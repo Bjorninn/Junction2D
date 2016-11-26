@@ -1,12 +1,10 @@
 ﻿using UnityEngine;
-using System.Collections;
-
 public class CharacterMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-	
-	}
+        timescaleDefault = Time.timeScale;
+    }
 	
 	[HideInInspector]
 	public bool facingRight = true;
@@ -19,7 +17,7 @@ public class CharacterMovement : MonoBehaviour {
 
 	[HideInInspector]
 	public bool jump = false;
-	public float jumpForce = 1000f;
+	public float jumpVerticalForce = 1000f;
 	public Transform groundCheck;
 	public float speed = 20;
 	public float slideForce = 100;
@@ -36,10 +34,15 @@ public class CharacterMovement : MonoBehaviour {
 	private float slideStart;
     public float deathTimer = 10f;
     private bool dead = false;
+    public float jumpHorizontalForce = 1000f;
+
 	private bool idleMove;
 	private bool tryingToJump;
 	private float idleTimeLimit;
 	private float idleTimeCounter;
+    
+    private bool mainMenuEnabled = false;
+    private float timescaleDefault;
 
     // Use this for initialization
 	void Awake()
@@ -56,7 +59,28 @@ public class CharacterMovement : MonoBehaviour {
 	// Update is called once per frame
 	void Update()
 	{
-		grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
+        if (Input.GetKeyDown(KeyCode.F))
+        {
+            GameObject mainMenu = GameObject.FindGameObjectWithTag("MainMenu");
+            Transform[] components = mainMenu.transform.GetComponentsInChildren<Transform>(true);
+            foreach (Transform t in components)
+            {
+                t.gameObject.SetActive(!mainMenuEnabled);
+            }
+            mainMenu.SetActive(true);
+            mainMenuEnabled = !mainMenuEnabled;
+
+            if (mainMenuEnabled)
+            {
+                Time.timeScale = 0;
+            }
+            else
+            {
+                Time.timeScale = timescaleDefault;
+            }
+        }
+
+        grounded = Physics2D.Linecast(transform.position, groundCheck.position, 1 << LayerMask.NameToLayer("Ground"));
 	    Stroke();
 		var v = Input.GetAxis("Vertical");
 
@@ -96,98 +120,101 @@ public class CharacterMovement : MonoBehaviour {
         }*/   
     }
 
-	void FixedUpdate()
-	{
-        if(!dead)
-		if (!sliding)
-		{
-			float h = Input.GetAxis("Horizontal");
-            if (h != 0f)
+    void FixedUpdate()
+    {
+        if (!dead)
+        {
+            if (!sliding)
             {
-                anim.SetFloat("Speed", Mathf.Abs(h));
-                
-                tran.Translate(Vector3.right * h * Time.deltaTime * speed);
-
-                if (h > 0 && !facingRight)
-                    Flip();
-                else if (h < 0 && facingRight)
-                    Flip();
                 if (grounded)
                 {
-                    anim.SetBool("Running", true);
-                }
-                else
-                {
-                    anim.SetBool("Running", false);
+                    float h = Input.GetAxis("Horizontal");
+                    if (h != 0f)
+                    {
+                        anim.SetFloat("Speed", Mathf.Abs(h));
+
+                        tran.Translate(Vector3.right * h * Time.deltaTime * speed);
+
+                        if (h > 0 && !facingRight)
+                            Flip();
+                        else if (h < 0 && facingRight)
+                            Flip();
+                        if (grounded)
+                        {
+                            anim.SetBool("Running", true);
+                        }
+                        else
+                        {
+                            anim.SetBool("Running", false);
+                        }
+                    }
+                    else
+                    {
+                        anim.SetBool("Running", false);
+                    }
                 }
             }
-            else
+            else if (Time.time - slideStart >= slideDuration)
+
             {
-                anim.SetBool("Running", false);
+                sliding = false;
+
+                rb2d.velocity = Vector2.zero;
+                //SetStandingTransform();
+
             }
 
-			if (Mathf.Abs (h) < 0.05f) {
-				idleMove = true;
-			} else {
-				idleMove = false;
-			}
-				
-		}
-		else if(Time.time - slideStart >= slideDuration)
-		{
-			sliding = false;
-            
-            rb2d.velocity = Vector2.zero;
-			//SetStandingTransform();
 
-		}
+            if (jump)
+            {
+                anim.SetBool("Jumping", true);
+                anim.SetBool("Running", false);
+                rb2d.AddForce(new Vector2(jumpHorizontalForce*actualDirectionVector, jumpVerticalForce));
+                jump = false;
+            }
 
-		if (jump)
-		{
-			anim.SetBool("Jumping", true);
-            anim.SetBool("Running", false);
-            rb2d.AddForce(new Vector2(0f, jumpForce));
-			jump = false;
-		}
+            if (slide)
+            {
+                slideStart = Time.time;
+                anim.SetBool("Running", false);
+                anim.SetTrigger("Sliding");
+                rb2d.AddForce(new Vector2(slideForce*actualDirectionVector, 0f));
+                sliding = true;
+                slide = false;
+                //SetSlidingTransform();
+            }
+            if (idleMove && !tryingToJump)
+            {
 
-		if (slide)
-		{
-			slideStart = Time.time;
-            anim.SetBool("Running", false);
-            anim.SetTrigger("Sliding");
-			rb2d.AddForce(new Vector2(slideForce * actualDirectionVector, 0f));
-			sliding = true;
-			slide = false;
-			//SetSlidingTransform();
-		}
+                // advance timer
+                idleTimeCounter += Time.deltaTime;
 
-		// if idle
-		if (idleMove && !tryingToJump) {
+                // if too long idle
+                if (idleTimeCounter > idleTimeLimit)
+                {
+                    timerSpotlight.GetComponent<TimerSpotlight>().CreateSpotlight(tran.position.y);
+                }
+            }
 
-			// advance timer
-			idleTimeCounter += Time.deltaTime;
 
-			// if too long idle
-			if (idleTimeCounter > idleTimeLimit) {
-				timerSpotlight.GetComponent<TimerSpotlight> ().CreateSpotlight (tran.position.y);	
-			}
+            if (!idleMove || tryingToJump)
+            {
+                // if player moves,reset timer
+                // reset
+                idleTimeCounter = 0;
+                timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
+            }
+        }
+    }
 
-		} 
 
-		// if player moves,reset timer
-		if (!idleMove || tryingToJump){
-			// reset
-			idleTimeCounter = 0;
-			timerSpotlight.GetComponent<TimerSpotlight> ().TurnBack ();
-		}
-
-	}
-
-	public void Die(){
+    public void Die(){
 	
 		Destroy (this.gameObject);
 		timerSpotlight.GetComponent<TimerSpotlight> ().TurnBack ();
 	}
+    
+
 
 	private void SetSlidingTransform()
 	{
