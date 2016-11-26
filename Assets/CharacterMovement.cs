@@ -117,7 +117,6 @@ public class CharacterMovement : MonoBehaviour
         if (!isDead)
         {
             isDead = true;
-            timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
             audio.PlayOneShot(reloadingSound, 0.1f);            
             Invoke("_Kill", 1.0f);
         }
@@ -127,7 +126,7 @@ public class CharacterMovement : MonoBehaviour
     {
         anim.SetTrigger("Death");
         audio.PlayOneShot(shootingSound, 0.5f);
-   
+		timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
     }
 
   
@@ -150,7 +149,7 @@ public class CharacterMovement : MonoBehaviour
         {
 
             //TODO: replace this
-            /*
+            
              if(Mathf.Abs(h) < 0.05f){
 
                 idleMove = true;
@@ -159,7 +158,7 @@ public class CharacterMovement : MonoBehaviour
 
                 idleMove = false;
             }
-             */
+             
 
             if (h != 0f)
             {
@@ -180,7 +179,7 @@ public class CharacterMovement : MonoBehaviour
         
         if (idleMove && !tryingToJump)
         {
-            //	Debug.Log (idleTimeCounter);
+            	Debug.Log (idleTimeCounter);
             // advance timer
             idleTimeCounter += Time.deltaTime;
 
