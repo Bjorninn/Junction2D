@@ -2,10 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="3c7dea80-aaef-453b-86f3-df83da822b1f" name="Default" comment="">
-      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Assets/Materials/FlashShader.shader" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Assets/Scripts/Battery.cs" afterPath="$PROJECT_DIR$/../../Assets/Scripts/Battery.cs" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Assets/Scripts/FlashLight.cs" afterPath="$PROJECT_DIR$/../../Assets/Scripts/FlashLight.cs" />
+      <change type="NEW" beforePath="" afterPath="$PROJECT_DIR$/../../Assets/2DLightAsset/Scripts/2DLight/DynamicLight.cs" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Assets/Animations/New folder (2).meta" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/../../Assets/Animations/New folder (3).meta" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Assets/Scenes/test-Bjorn.unity" afterPath="$PROJECT_DIR$/../../Assets/Scenes/test-Bjorn.unity" />
     </list>
     <ignored path="Junction2D.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -47,12 +47,12 @@
             <state relative-caret-position="179">
               <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding>
-                <marker date="1480147723000" expanded="true" signature="6:44" ph="..." />
-                <marker date="1480147723000" expanded="true" signature="91:615" ph="{...}" />
-                <marker date="1480147723000" expanded="true" signature="182:188" ph="{...}" />
-                <marker date="1480147723000" expanded="true" signature="243:249" ph="{...}" />
-                <marker date="1480147723000" expanded="true" signature="277:471" ph="{...}" />
-                <marker date="1480147723000" expanded="true" signature="519:613" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="6:44" ph="..." />
+                <marker date="1480152697000" expanded="true" signature="91:615" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="182:188" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="243:249" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="277:471" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="519:613" ph="{...}" />
               </folding>
             </state>
           </provider>
@@ -64,25 +64,64 @@
             <state relative-caret-position="214">
               <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
               <folding>
-                <marker date="1480147866000" expanded="true" signature="6:44" ph="..." />
-                <marker date="1480147866000" expanded="true" signature="85:1559" ph="{...}" />
-                <marker date="1480147866000" expanded="true" signature="356:441" ph="{...}" />
-                <marker date="1480147866000" expanded="true" signature="495:582" ph="{...}" />
-                <marker date="1480147866000" expanded="true" signature="623:767" ph="{...}" />
-                <marker date="1480147866000" expanded="true" signature="800:1146" ph="{...}" />
-                <marker date="1480147866000" expanded="true" signature="1182:1557" ph="{...}" />
-                <marker date="1480147866000" expanded="true" signature="1320:1428" ph="/* If the player tries to turn the light on but it has no charge ... */" />
+                <marker date="1480152697000" expanded="true" signature="6:44" ph="..." />
+                <marker date="1480152697000" expanded="true" signature="85:1559" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="356:441" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="495:582" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="623:767" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="800:1146" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="1182:1557" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="1320:1428" ph="/* If the player tries to turn the light on but it has no charge ... */" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FlashShader.shader" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FlashShader.shader" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../../Assets/Materials/FlashShader.shader">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="135">
               <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="DynamicLight.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../Assets/2DLightAsset/Scripts/2DLight/DynamicLight.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="120">
+              <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+              <folding>
+                <marker date="1480154432000" expanded="true" signature="0:1228" ph="/* Copyright (c) 2014 Martin Ysa ... */" />
+                <marker date="1480154432000" expanded="true" signature="1236:1308" ph="..." />
+                <marker date="1480154432000" expanded="true" signature="1310:1386" ph="/* This allows for the use of lists, like &lt;GameObject&gt; ... */" />
+                <marker date="1480154432000" expanded="true" signature="1407:1597" ph="{...}" />
+                <marker date="1480154432000" expanded="true" signature="1642:14297" ph="{...}" />
+                <marker date="1480154432000" expanded="true" signature="2267:3346" ph="{...}" />
+                <marker date="1480154432000" expanded="true" signature="2364:2495" ph="/* -- Step 1: obtain all active meshes in the scene -- ... */" />
+                <marker date="1480154432000" expanded="true" signature="2845:2995" ph="/* gameObject.name = &quot;2DLight&quot;; ... */" />
+                <marker date="1480154432000" expanded="true" signature="3364:3443" ph="{...}" />
+                <marker date="1480154432000" expanded="true" signature="3466:3878" ph="{...}" />
+                <marker date="1480154432000" expanded="true" signature="3899:3985" ph="{...}" />
+                <marker date="1480154432000" expanded="true" signature="4005:11943" ph="{...}" />
+                <marker date="1480154432000" expanded="true" signature="4176:4447" ph="/* --Step 2: Obtain vertices for each mesh -- ... */" />
+                <marker date="1480154432000" expanded="true" signature="4771:4916" ph="/* las siguientes variables usadas para arregla bug de ordenamiento cuando ... */" />
+                <marker date="1480154432000" expanded="true" signature="6213:6354" ph="/* -- bookmark if an angle is lower than 0 or higher than 2f -- ... */" />
+                <marker date="1480154432000" expanded="true" signature="7506:7582" ph="/* -- convencional position of ray points ... */" />
+                <marker date="1480154432000" expanded="true" signature="7853:7940" ph="/* allVertices.Add(tempVerts[0]); ... */" />
+                <marker date="1480154432000" expanded="true" signature="7948:8002" ph="/* -- r ==0 --&gt; right ray ... */" />
+                <marker date="1480154432000" expanded="true" signature="9651:9774" ph="/* --Step 3: Generate vectors for light cast-- ... */" />
+                <marker date="1480154432000" expanded="true" signature="10719:10864" ph="/* -- Step 4: Sort each vertice by angle (along sweep ray 0 - 2PI)-- ... */" />
+                <marker date="1480154432000" expanded="true" signature="11968:13363" ph="{...}" />
+                <marker date="1480154432000" expanded="true" signature="11972:12164" ph="/* -- Step 5: fill the mesh with vertices-- ... */" />
+                <marker date="1480154432000" expanded="true" signature="12438:12513" ph="/* if(allVertices[i].endpoint == true) ... */" />
+                <marker date="1480154432000" expanded="true" signature="13398:13473" ph="{...}" />
+                <marker date="1480154432000" expanded="true" signature="13500:13825" ph="{...}" />
+                <marker date="1480154432000" expanded="true" signature="13879:14005" ph="{...}" />
+                <marker date="1480154432000" expanded="true" signature="14046:14294" ph="{...}" />
+                <marker date="1480154432000" expanded="true" signature="14050:14159" ph="/* Hight performance for calculate angle on a vector (only for sort) ... */" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -100,6 +139,7 @@
         <option value="$PROJECT_DIR$/../../Assets/Scripts/FlashLight.cs" />
         <option value="$PROJECT_DIR$/../../Assets/Materials/NewSurfaceShader.shader" />
         <option value="$PROJECT_DIR$/../../Assets/Materials/FlashShader.shader" />
+        <option value="$PROJECT_DIR$/../../Assets/2DLightAsset/Scripts/2DLight/DynamicLight.cs" />
       </list>
     </option>
   </component>
@@ -142,7 +182,7 @@
               <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerViewPane$ProjectViewPaneTreeStructure$createRoot$1" />
             </PATH_ELEMENT>
             <PATH_ELEMENT>
-              <option name="myItemId" value="Junction2D (2 projects)" />
+              <option name="myItemId" value="Junction2D (3 projects)" />
               <option name="myItemType" value="com.jetbrains.resharper.projectView.solutionExplorer.SolutionExplorerNodeRider" />
             </PATH_ELEMENT>
           </PATH>
@@ -196,12 +236,12 @@
       <updated>1480096258664</updated>
       <workItem from="1480096263509" duration="360000" />
       <workItem from="1480096732642" duration="174000" />
-      <workItem from="1480145489246" duration="1859000" />
+      <workItem from="1480145489246" duration="2173000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2393000" />
+    <option name="totallyTimeSpent" value="2707000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -214,10 +254,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="43" width="1260" height="669" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Change Signature" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Errors in solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -278,12 +318,12 @@
         <state relative-caret-position="179">
           <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
           <folding>
-            <marker date="1480147723000" expanded="true" signature="6:44" ph="..." />
-            <marker date="1480147723000" expanded="true" signature="91:615" ph="{...}" />
-            <marker date="1480147723000" expanded="true" signature="182:188" ph="{...}" />
-            <marker date="1480147723000" expanded="true" signature="243:249" ph="{...}" />
-            <marker date="1480147723000" expanded="true" signature="277:471" ph="{...}" />
-            <marker date="1480147723000" expanded="true" signature="519:613" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="6:44" ph="..." />
+            <marker date="1480152697000" expanded="true" signature="91:615" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="182:188" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="243:249" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="277:471" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="519:613" ph="{...}" />
           </folding>
         </state>
       </provider>
@@ -293,14 +333,14 @@
         <state relative-caret-position="214">
           <caret line="15" column="34" selection-start-line="15" selection-start-column="34" selection-end-line="15" selection-end-column="34" />
           <folding>
-            <marker date="1480147866000" expanded="true" signature="6:44" ph="..." />
-            <marker date="1480147866000" expanded="true" signature="85:1559" ph="{...}" />
-            <marker date="1480147866000" expanded="true" signature="356:441" ph="{...}" />
-            <marker date="1480147866000" expanded="true" signature="495:582" ph="{...}" />
-            <marker date="1480147866000" expanded="true" signature="623:767" ph="{...}" />
-            <marker date="1480147866000" expanded="true" signature="800:1146" ph="{...}" />
-            <marker date="1480147866000" expanded="true" signature="1182:1557" ph="{...}" />
-            <marker date="1480147866000" expanded="true" signature="1320:1428" ph="/* If the player tries to turn the light on but it has no charge ... */" />
+            <marker date="1480152697000" expanded="true" signature="6:44" ph="..." />
+            <marker date="1480152697000" expanded="true" signature="85:1559" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="356:441" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="495:582" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="623:767" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="800:1146" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="1182:1557" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="1320:1428" ph="/* If the player tries to turn the light on but it has no charge ... */" />
           </folding>
         </state>
       </provider>
@@ -318,6 +358,43 @@
         <state relative-caret-position="135">
           <caret line="9" column="19" selection-start-line="9" selection-start-column="19" selection-end-line="9" selection-end-column="19" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Assets/2DLightAsset/Scripts/2DLight/DynamicLight.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="120">
+          <caret line="156" column="0" selection-start-line="156" selection-start-column="0" selection-end-line="156" selection-end-column="0" />
+          <folding>
+            <marker date="1480154432000" expanded="true" signature="0:1228" ph="/* Copyright (c) 2014 Martin Ysa ... */" />
+            <marker date="1480154432000" expanded="true" signature="1236:1308" ph="..." />
+            <marker date="1480154432000" expanded="true" signature="1310:1386" ph="/* This allows for the use of lists, like &lt;GameObject&gt; ... */" />
+            <marker date="1480154432000" expanded="true" signature="1407:1597" ph="{...}" />
+            <marker date="1480154432000" expanded="true" signature="1642:14297" ph="{...}" />
+            <marker date="1480154432000" expanded="true" signature="2267:3346" ph="{...}" />
+            <marker date="1480154432000" expanded="true" signature="2364:2495" ph="/* -- Step 1: obtain all active meshes in the scene -- ... */" />
+            <marker date="1480154432000" expanded="true" signature="2845:2995" ph="/* gameObject.name = &quot;2DLight&quot;; ... */" />
+            <marker date="1480154432000" expanded="true" signature="3364:3443" ph="{...}" />
+            <marker date="1480154432000" expanded="true" signature="3466:3878" ph="{...}" />
+            <marker date="1480154432000" expanded="true" signature="3899:3985" ph="{...}" />
+            <marker date="1480154432000" expanded="true" signature="4005:11943" ph="{...}" />
+            <marker date="1480154432000" expanded="true" signature="4176:4447" ph="/* --Step 2: Obtain vertices for each mesh -- ... */" />
+            <marker date="1480154432000" expanded="true" signature="4771:4916" ph="/* las siguientes variables usadas para arregla bug de ordenamiento cuando ... */" />
+            <marker date="1480154432000" expanded="true" signature="6213:6354" ph="/* -- bookmark if an angle is lower than 0 or higher than 2f -- ... */" />
+            <marker date="1480154432000" expanded="true" signature="7506:7582" ph="/* -- convencional position of ray points ... */" />
+            <marker date="1480154432000" expanded="true" signature="7853:7940" ph="/* allVertices.Add(tempVerts[0]); ... */" />
+            <marker date="1480154432000" expanded="true" signature="7948:8002" ph="/* -- r ==0 --&gt; right ray ... */" />
+            <marker date="1480154432000" expanded="true" signature="9651:9774" ph="/* --Step 3: Generate vectors for light cast-- ... */" />
+            <marker date="1480154432000" expanded="true" signature="10719:10864" ph="/* -- Step 4: Sort each vertice by angle (along sweep ray 0 - 2PI)-- ... */" />
+            <marker date="1480154432000" expanded="true" signature="11968:13363" ph="{...}" />
+            <marker date="1480154432000" expanded="true" signature="11972:12164" ph="/* -- Step 5: fill the mesh with vertices-- ... */" />
+            <marker date="1480154432000" expanded="true" signature="12438:12513" ph="/* if(allVertices[i].endpoint == true) ... */" />
+            <marker date="1480154432000" expanded="true" signature="13398:13473" ph="{...}" />
+            <marker date="1480154432000" expanded="true" signature="13500:13825" ph="{...}" />
+            <marker date="1480154432000" expanded="true" signature="13879:14005" ph="{...}" />
+            <marker date="1480154432000" expanded="true" signature="14046:14294" ph="{...}" />
+            <marker date="1480154432000" expanded="true" signature="14050:14159" ph="/* Hight performance for calculate angle on a vector (only for sort) ... */" />
+          </folding>
         </state>
       </provider>
     </entry>
