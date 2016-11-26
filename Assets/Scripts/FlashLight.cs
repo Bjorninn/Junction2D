@@ -18,13 +18,14 @@ public class FlashLight : MonoBehaviour
 	{
 	    Instance = this;
 	    CurrentCharge = MaxCharge;
-	    _drainRate = 10.0f;
+	    _drainRate = 1.0f;
+	    _isOn = Beam.enabled;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-	    if (Input.GetKeyDown(KeyCode.F))
+	    if (Input.GetKeyDown(KeyCode.L))
 	    {
 	        ToggleFlashlight();
 	    }
@@ -46,8 +47,6 @@ public class FlashLight : MonoBehaviour
         {
             CurrentCharge -= _drainRate;
 
-            Debug.Log("Current Charge is: " + CurrentCharge);
-
             if (CurrentCharge <= 0)
             {
                 CurrentCharge = 0;
@@ -62,7 +61,8 @@ public class FlashLight : MonoBehaviour
     {
         _isOn = !_isOn;
 
-        Beam.gameObject.SetActive(_isOn);
+        //Beam.gameObject.SetActive(_isOn);
+        Beam.enabled = _isOn;
 
         if (CurrentCharge <= 0 && _isOn)
         {
