@@ -36,6 +36,7 @@ public class CharacterMovement : MonoBehaviour {
 	private float slideStart;
     public float deathTimer = 10f;
     private bool dead = false;
+    public float jumpHorizontalForce = 1000f;
 	private bool idleMove;
 	private bool tryingToJump;
 	private float idleTimeLimit;
