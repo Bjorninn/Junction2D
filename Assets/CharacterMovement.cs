@@ -195,7 +195,7 @@ public class CharacterMovement : MonoBehaviour {
             }
             if (idleMove && !tryingToJump)
             {
-				Debug.Log (idleTimeCounter);
+			//	Debug.Log (idleTimeCounter);
                 // advance timer
                 idleTimeCounter += Time.deltaTime;
 
