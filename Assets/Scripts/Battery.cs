@@ -18,12 +18,8 @@ public class Battery : MonoBehaviour, IPickup
 
     public void OnPickUp()
     {
-        // Get the flashlight
-
-        // Increase the power of the flashlight by ChargeAmount
+        // Get the flashlight and increase the power by ChargeAmount
         FlashLight.Instance.AddCharge(ChargeAmount);
-
-        // Do something else if we so want
 
         // Delete the battery
         Destroy(gameObject);
