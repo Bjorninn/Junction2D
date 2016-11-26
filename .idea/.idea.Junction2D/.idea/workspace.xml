@@ -20,7 +20,25 @@
     <favorites_list name="Junction2D" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Battery.cs" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../../Assets/Scripts/Battery.cs">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="345">
+              <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+              <folding>
+                <marker date="1480152697000" expanded="true" signature="6:44" ph="..." />
+                <marker date="1480152697000" expanded="true" signature="91:615" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="182:188" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="243:249" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="277:471" ph="{...}" />
+                <marker date="1480152697000" expanded="true" signature="519:613" ph="{...}" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
@@ -130,12 +148,12 @@
       <updated>1480096258664</updated>
       <workItem from="1480096263509" duration="360000" />
       <workItem from="1480096732642" duration="174000" />
-      <workItem from="1480145489246" duration="2334000" />
+      <workItem from="1480145489246" duration="2600000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="2868000" />
+    <option name="totallyTimeSpent" value="3134000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -148,10 +166,10 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="10" y="43" width="1260" height="669" extended-state="0" />
-    <editor active="false" />
+    <editor active="true" />
     <layout>
       <window_info id="Change Signature" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Errors in solution" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Build" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -235,21 +253,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/../../Assets/Scripts/Battery.cs">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <marker date="1480152697000" expanded="true" signature="6:44" ph="..." />
-            <marker date="1480152697000" expanded="true" signature="91:615" ph="{...}" />
-            <marker date="1480152697000" expanded="true" signature="182:188" ph="{...}" />
-            <marker date="1480152697000" expanded="true" signature="243:249" ph="{...}" />
-            <marker date="1480152697000" expanded="true" signature="277:471" ph="{...}" />
-            <marker date="1480152697000" expanded="true" signature="519:613" ph="{...}" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../../Assets/Scripts/Test.cs">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="180">
@@ -259,6 +262,21 @@
             <marker date="1480096739000" expanded="true" signature="80:199" ph="{...}" />
             <marker date="1480096739000" expanded="true" signature="130:136" ph="{...}" />
             <marker date="1480096739000" expanded="true" signature="191:197" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../../Assets/Scripts/Battery.cs">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="23" column="0" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <marker date="1480152697000" expanded="true" signature="6:44" ph="..." />
+            <marker date="1480152697000" expanded="true" signature="91:615" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="182:188" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="243:249" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="277:471" ph="{...}" />
+            <marker date="1480152697000" expanded="true" signature="519:613" ph="{...}" />
           </folding>
         </state>
       </provider>
