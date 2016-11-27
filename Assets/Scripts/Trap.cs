@@ -27,7 +27,10 @@ public class Trap : MonoBehaviour {
 
             // Play animation
             var animator = GetComponent<Animator>();
-            animator.SetTrigger("Close");
+            if (animator)
+            {
+                animator.SetTrigger("Close");
+            }
         }
     }
 }
