@@ -47,7 +47,7 @@ public class PlatformScript : MonoBehaviour {
         }
 
         secondsBeforeFallingDown = 6.0f;
-        breakable = true;
+        breakable = false;
     }
 	
 	// Update is called once per frame

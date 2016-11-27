@@ -69,9 +69,6 @@ public class TimerSpotlight : MonoBehaviour {
 			Destroy(points[0]);
 
 		}
-
-
-
 	}
 
 	public void TurnBack(){

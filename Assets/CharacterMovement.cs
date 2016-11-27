@@ -14,13 +14,13 @@ public class CharacterMovement : MonoBehaviour
 
 	public int actualDirectionVector
 	{
-		get { return facingRight ? 1 : -1; }
+		get { return facingRight ? -1 : 1; }
 		private set { }
 	}
 
 	[HideInInspector]
-	public bool doHighJump = false;
-	public float highJumpVerticalForce = 1000f;
+	public bool doJump = false;
+	public float JumpVerticalForce = 1000f;
 	public Transform groundCheck;
 	public float speed = 20;
 	public float slideForce = 100;
@@ -35,12 +35,11 @@ public class CharacterMovement : MonoBehaviour
 	private AudioSource audio;
 
 	private bool doSlide = false;
-	private bool isSliding = false;
+	public bool isSliding = false;
 	private float slideStart;
 
 	public float deathTimer = 10f;
 	public bool isDead { get; private set; }
-	public float highJumpHorizontalForce = 1000f;
 
 	private bool idleMove;
 	private bool tryingToJump;
@@ -48,14 +47,13 @@ public class CharacterMovement : MonoBehaviour
 	private float idleTimeCounter;
 
 	private bool mainMenuEnabled = false;
-	private float timescaleDefault;
+    private bool gameOverScreenEnabled = false;
+    private float timescaleDefault;
 	public bool isJumping { get; private set; }
     public bool isRunning { get; private set; }
 	public float chasersPosition;
 	public float playersAdvance = 100;
 	public float chasersSpeed = 1;
-	public int longJumpHorizontalForce = 300;
-	public float longJumpVerticalForce = 200;
 	private bool doLongJump;
 
 	public PolygonCollider2D slidingCollider;
@@ -66,6 +64,7 @@ public class CharacterMovement : MonoBehaviour
     public AudioClip shootingSound;
 
     private int playerScore = 0;
+    private bool isFalling;
 
     // Use this for initialization
     void Awake()
@@ -79,12 +78,12 @@ public class CharacterMovement : MonoBehaviour
 		idleTimeLimit = 5.0f;
 		idleTimeCounter = 0.0f;
 		chasersPosition = tran.position.x - playersAdvance;
-	}
+    }
 
 	// Update is called once per frame
 	void Update()
 	{
-		if (Input.GetKeyDown(KeyCode.F))
+		if (Input.GetKeyDown(KeyCode.Escape) && !gameOverScreenEnabled)
 		{
 			PauseGameAndOpenMenu();
 		}
@@ -94,9 +93,19 @@ public class CharacterMovement : MonoBehaviour
 		var v = Input.GetAxis("Vertical");
 		var h = Input.GetAxis("Horizontal");
 
-		if (isGrounded && isJumping)
+	    if (rb2d.velocity.y < 0)
+	    {
+	        isFalling = true;
+	    }
+
+		if (isGrounded && isFalling)
 		{
+		    isFalling = false;
 			StopJumping();
+		}
+		else
+		{
+		    anim.SetBool("IsJumping", true);
 		}
 
 		if (isGrounded && !isSliding && v != 0)
@@ -105,14 +114,9 @@ public class CharacterMovement : MonoBehaviour
 			//We can only jump or slide, not both
 			if (v > 0)
 			{
-				if (h == 0)
-				{
-					doHighJump = true;
-				}
-				else
-				{
-					doLongJump = true;
-				}
+
+					doJump = true;
+			
 			}
 			else if (v < 0)
 			{
@@ -122,13 +126,26 @@ public class CharacterMovement : MonoBehaviour
 
 		MoveChaser();
 
+	    //AmplifyFall();
+
 	}
 
-	private void StopJumping()
+    private void AmplifyFall()
+    {
+        if (rb2d.velocity.y < 0)
+        {
+            rb2d.velocity = new Vector2(rb2d.velocity.x, rb2d.velocity.y * 1.2f);
+        }
+    }
+
+    private void StopJumping()
 	{
-		isJumping = false;
-		anim.SetBool("Jumping", false);
-		rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+	    if (isJumping)
+	    {
+            isJumping = false;
+            anim.SetBool("IsJumping", false);
+            rb2d.velocity = new Vector2(0, rb2d.velocity.y);
+        }
 	}
 
 	private void MoveChaser()
@@ -142,17 +159,62 @@ public class CharacterMovement : MonoBehaviour
 	{
 		if (!isDead)
 		{
-			isDead = true;
+            audio.Stop();
+            isDead = true;
+            this.StopRunning();
+            this.StopJumping();
+            anim.SetTrigger("Idle");
+            gameOverScreenEnabled = true;
+            //anim.Stop();
+
+            audio.volume = 0.6f;
 			audio.PlayOneShot(reloadingSound, 0.1f);            
 			Invoke("_Kill", 1.0f);
 		}
 	}
 
+    public void KillByTrap()
+    {
+        if (!isDead)
+        {
+            audio.Stop();
+            isDead = true;
+            this.StopRunning();
+            this.StopJumping();
+            anim.SetTrigger("Idle");
+            gameOverScreenEnabled = true;
+            //anim.Stop();
+
+            audio.volume = 0.6f;
+
+            anim.SetTrigger("Death");
+            audio.volume = 0.9f;
+            //timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
+
+            if (mainMenuEnabled)
+            {
+                Time.timeScale = 0;
+            }
+
+            GameObject gameOverMenu = GameObject.FindGameObjectWithTag("GameOver");
+            Transform[] components = gameOverMenu.transform.GetComponentsInChildren<Transform>(true);
+            foreach (Transform t in components)
+            {
+                t.gameObject.SetActive(true);
+            }
+
+            GameObject scoreLabel = GameObject.FindGameObjectWithTag("ScoreLabel");
+            var textComponent = scoreLabel.GetComponent<Text>();
+            //textComponent.text = "Flashlight charge: " + playerScore.ToString();
+        }
+    }
+
     private void _Kill()
     {
         anim.SetTrigger("Death");
+        audio.volume = 0.9f;
         audio.PlayOneShot(shootingSound, 0.5f);
-        timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
+        //timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
 
         if (mainMenuEnabled)
         {
@@ -168,29 +230,25 @@ public class CharacterMovement : MonoBehaviour
 
         GameObject scoreLabel = GameObject.FindGameObjectWithTag("ScoreLabel");
         var textComponent = scoreLabel.GetComponent<Text>();
-        textComponent.text = "Score: " + playerScore.ToString();
+        //textComponent.text = "Flashlight charge: " + playerScore.ToString();
     }
 
 	void FixedUpdate()
 	{
 		var h = Input.GetAxis("Horizontal");
 		if (isDead) return;
-		if (doHighJump)
+		if (doJump)
 		{
 			StopRunning();
-			HighJump();
+			Jump();
 		}
-		else if(doLongJump)
-		{
-			StopRunning();
-			LongJump();
-		}
+		
 		else if (doSlide)
 		{
 			StopRunning();
 			Slide();
 		}
-		else if (isGrounded && !isSliding)
+		if (!isSliding)
 		{
 
 			//TODO: replace this
@@ -215,17 +273,12 @@ public class CharacterMovement : MonoBehaviour
 			}
 		}
 
-		var slideTimeIsOver = isSliding && Time.time - slideStart >= slideDuration;
-		if (slideTimeIsOver)
-		{
-			StopSliding();
-		}
 
 
 
 		if (chasersPosition>= tran.position.x)
 		{
-			timerSpotlight.GetComponent<TimerSpotlight>().CreateSpotlight(tran.position.y);
+			//timerSpotlight.GetComponent<TimerSpotlight>().CreateSpotlight(tran.position.y);
 		}
 
 
@@ -255,42 +308,59 @@ public class CharacterMovement : MonoBehaviour
 	{
 		tran.Translate(Vector3.right*h*Time.deltaTime*speed);
 
-		if (h > 0 && !facingRight)
+		if (h < 0 && !facingRight)
 			Flip();
-		else if (h < 0 && facingRight)
+		else if (h > 0 && facingRight)
 			Flip();
-		isRunning = true;
-		anim.SetBool("Running", true);
+		
+	    if (!isJumping && !doJump)
+	    {
+            isRunning = true;
+            anim.SetBool("Running", true);
+        }
 	}
 
-	private void HighJump()
+	private void Jump()
 	{
-		anim.SetBool("Jumping", true);
-		rb2d.AddForce(new Vector2(highJumpHorizontalForce*actualDirectionVector, 0f), ForceMode2D.Force);
-		rb2d.AddForce(new Vector2(0f, highJumpVerticalForce), ForceMode2D.Impulse);
-		doHighJump = false;
-		isJumping = true;
-	}
+		if(!isJumping)
+        { anim.SetTrigger("Jumping");}
 
-	private void LongJump()
-	{
-		anim.SetBool("Jumping", true);
-		rb2d.AddForce(new Vector2(longJumpHorizontalForce * actualDirectionVector,0f), ForceMode2D.Impulse);
-		rb2d.AddForce(new Vector2(0f, longJumpVerticalForce), ForceMode2D.Force);
-		doLongJump = false;
-		isJumping = true;
-	}
+        //rb2d.AddForce(new Vector2(highJumpHorizontalForce*actualDirectionVector, 0f), ForceMode2D.Impulse);
+        doJump = false;
+        isJumping = true;
+        
+    }
+
+    private void AddForceToJump()
+    {
+        
+        rb2d.AddForce(new Vector2(0f, JumpVerticalForce), ForceMode2D.Impulse);
+        //rb2d.velocity = new Vector2(highJumpHorizontalForce*actualDirectionVector, highJumpVerticalForce);
+
+      
+    }
+
+   
+
+
 
 	private void Slide()
 	{
 		slideStart = Time.time;
 		anim.SetBool("Running", false);
 		anim.SetTrigger("Sliding");
-		rb2d.AddForce(new Vector2(slideForce*actualDirectionVector, 0f), ForceMode2D.Impulse);;
-		isSliding = true;
-		doSlide = false;
-		SetSlidingTransform();
+
+        isSliding = true;
+        doSlide = false;
+		
 	}
+
+    private void AddSlideForce()
+    {
+        rb2d.AddForce(new Vector2(slideForce * actualDirectionVector, 0f), ForceMode2D.Impulse); ;
+        
+        SetSlidingTransform();
+    }
 
 
 	public void Die()
