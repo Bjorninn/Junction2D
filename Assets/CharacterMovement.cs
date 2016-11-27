@@ -173,6 +173,42 @@ public class CharacterMovement : MonoBehaviour
 		}
 	}
 
+    public void KillByTrap()
+    {
+        if (!isDead)
+        {
+            audio.Stop();
+            isDead = true;
+            this.StopRunning();
+            this.StopJumping();
+            anim.SetTrigger("Idle");
+            gameOverScreenEnabled = true;
+            //anim.Stop();
+
+            audio.volume = 0.6f;
+
+            anim.SetTrigger("Death");
+            audio.volume = 0.9f;
+            //timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
+
+            if (mainMenuEnabled)
+            {
+                Time.timeScale = 0;
+            }
+
+            GameObject gameOverMenu = GameObject.FindGameObjectWithTag("GameOver");
+            Transform[] components = gameOverMenu.transform.GetComponentsInChildren<Transform>(true);
+            foreach (Transform t in components)
+            {
+                t.gameObject.SetActive(true);
+            }
+
+            GameObject scoreLabel = GameObject.FindGameObjectWithTag("ScoreLabel");
+            var textComponent = scoreLabel.GetComponent<Text>();
+            //textComponent.text = "Flashlight charge: " + playerScore.ToString();
+        }
+    }
+
     private void _Kill()
     {
         anim.SetTrigger("Death");

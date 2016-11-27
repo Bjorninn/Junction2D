@@ -21,7 +21,7 @@ public class Trap : MonoBehaviour {
         {
             // Kill the player
             var player = collider.transform.GetComponent<CharacterMovement>();
-            player.Kill();
+            player.KillByTrap();
 
             // Play sound
 
