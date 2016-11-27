@@ -242,7 +242,7 @@ public class CharacterMovement : MonoBehaviour
 
 		if (chasersPosition>= tran.position.x)
 		{
-			timerSpotlight.GetComponent<TimerSpotlight>().CreateSpotlight(tran.position.y);
+			//timerSpotlight.GetComponent<TimerSpotlight>().CreateSpotlight(tran.position.y);
 		}
 
 
