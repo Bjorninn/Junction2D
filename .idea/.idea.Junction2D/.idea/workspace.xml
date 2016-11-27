@@ -1,7 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="3c7dea80-aaef-453b-86f3-df83da822b1f" name="Default" comment="" />
+    <list default="true" id="3c7dea80-aaef-453b-86f3-df83da822b1f" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/../../Assets/Scenes/test-Bjorn.unity" afterPath="$PROJECT_DIR$/../../Assets/Scenes/test-Bjorn.unity" />
+    </list>
     <ignored path="Junction2D.iws" />
     <ignored path=".idea/workspace.xml" />
     <ignored path=".idea/dataSources.local.xml" />
