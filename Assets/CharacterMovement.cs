@@ -78,7 +78,7 @@ public class CharacterMovement : MonoBehaviour
 		idleTimeLimit = 5.0f;
 		idleTimeCounter = 0.0f;
 		chasersPosition = tran.position.x - playersAdvance;
-	}
+    }
 
 	// Update is called once per frame
 	void Update()
@@ -159,13 +159,15 @@ public class CharacterMovement : MonoBehaviour
 	{
 		if (!isDead)
 		{
+            audio.Stop();
             isDead = true;
             this.StopRunning();
             this.StopJumping();
             anim.SetTrigger("Idle");
             gameOverScreenEnabled = true;
             //anim.Stop();
-            
+
+            audio.volume = 0.6f;
 			audio.PlayOneShot(reloadingSound, 0.1f);            
 			Invoke("_Kill", 1.0f);
 		}
@@ -174,6 +176,7 @@ public class CharacterMovement : MonoBehaviour
     private void _Kill()
     {
         anim.SetTrigger("Death");
+        audio.volume = 0.9f;
         audio.PlayOneShot(shootingSound, 0.5f);
         //timerSpotlight.GetComponent<TimerSpotlight>().TurnBack();
 
