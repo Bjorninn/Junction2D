@@ -194,7 +194,7 @@ public class CharacterMovement : MonoBehaviour
 
         GameObject scoreLabel = GameObject.FindGameObjectWithTag("ScoreLabel");
         var textComponent = scoreLabel.GetComponent<Text>();
-        textComponent.text = "Flashlight charge: " + playerScore.ToString();
+        //textComponent.text = "Flashlight charge: " + playerScore.ToString();
     }
 
 	void FixedUpdate()
